@@ -16,7 +16,7 @@ export const HomeLanding = () => {
             <p>Ahorra</p>
             <p>de forma correcta</p>
           </div>
-          <p className='text-xl'>Natilleando es una simple natillera para miembros exclusivos que tiene como
+          <p className='text-xl'>Natilleando es un simple fondo de ahorro para miembros exclusivos que tiene como
           propósito crear un ahorro programado a través del tiempo con un porcentaje de rentabilidad anual.</p>
           <TopicButtonsContainer />
         </div>

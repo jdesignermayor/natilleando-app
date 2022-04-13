@@ -52,13 +52,12 @@ export const landingData = {
             title: 'Simples normas',
             icon: '✨',
             description: `<p>
-            Antes de iniciar con las normas es importante dejar claro, esta es una
-            natillera exclusivamente familiar y/o amigos de confianza, no tiene
+            Antes de iniciar con las normas es importante dejar claro, este es un fondo de ahorro para personas de confianza, no tiene
             fines lucrativos para ninguna parte.
             </p>
             <p class="mt-5">
-            Si desea hacer parte de este mundo de ahorro familiar bienvenido a
-            natilleando.
+                Si desea hacer parte de este mundo de ahorro familiar bienvenido a
+                natilleando.
             </p>
             `,
             subItems: [
