@@ -43,7 +43,7 @@ export const landingData = {
             imgURL: 'https://assets.website-files.com/5c8b2e2664f8768dfb1ef7ff/5d2da3052be6ba58cce18efa_shiny-butt.gif',
             title: '¡No más pelado en diciembre!',
             icon: '🔮',
-            description: '<p>La idea fue desarrollada solo con el fin de integrar de alguna a las personas de carácter independiente en un ahorro navideño.</p><p>Es administrada por personas responsables.</p>',
+            description: '<p>La idea fue desarrollada solo con el fin de integrar de alguna manera a las personas de carácter independiente en un ahorro navideño.</p><p>Es administrada por personas responsables.</p>',
             subItems: []
         },
         {
@@ -112,7 +112,7 @@ export const landingData = {
             subItems: [
                 {
                     id: 0,
-                    label: 'En caso de no dar el ahorro entre los primeros 5 días del mes, se cobrará una $ 500 pesos por cada día de retraso.'
+                    label: 'En caso de no dar el ahorro entre los primeros 5 días del mes, se cobrará una suma de $ 500 pesos por cada día de retraso.'
                 },
                 {
                     id: 1,
@@ -124,10 +124,6 @@ export const landingData = {
                 },
                 {
                     id: 3,
-                    label: 'Los intereses serán en un(%) porcentaje al monto de ahorro del socio.'
-                },
-                {
-                    id: 4,
                     label: 'Impulsamos la buena gestión del dinero, así que el socio que no pague así sea un mes, automáticamente será expulsado de la natillera.'
                 }
             ],
