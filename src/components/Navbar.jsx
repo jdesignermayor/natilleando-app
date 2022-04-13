@@ -8,7 +8,7 @@ import Roket from '../assets/icons/rocketWhite.svg';
 export const Navbar = () => {
     return (
         <div className='flex items-center justify-between px-5 md:px-64 h-16 p-3 lg:px-96 2xl:px-[30%] gap-9 fixed w-full bg-white backdrop-filter backdrop-blur-md bg-opacity-70 border-b border-black'>
-            <a href="" className='flex items-center font-gtultra font-bold text-xs md:text-xl'>
+            <a href="" className='flex items-center font-gtultra font-bold text-xl md:text-xl'>
                 <img src={Logo} width="50" alt="No te quedes pelado" />
                 Natilleando
             </a>
