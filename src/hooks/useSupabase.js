@@ -4,7 +4,7 @@ import { supabase } from "../supabaseClient";
 const MEMBER_ROLE = 3;
 
 export function useSupabase() {
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [members, setMembers] = useState([]);
 
   const getMembers = async () => {
@@ -27,7 +27,7 @@ export function useSupabase() {
       setIsLoading(false);
     }
   };
-  
+
   useEffect(() => {
     getMembers();
   }, []);

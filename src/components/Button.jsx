@@ -1,11 +1,16 @@
 
-export const Button = ({ children, type = "button" }) => {
+import { Spinning } from '../components/Spinning';
+
+export const Button = ({ children, type = "button", isLoading = false}) => {
   return (
     <button
       type={type}
-      className="bg-black text-white transition py-3 px-7 w-full hover:opacity-60 text-base font-gtultraFine"
+      disabled={isLoading}
+      className={`flex items-center justify-center bg-black text-white transition py-3 px-7 w-full hover:opacity-60 h-12 text-base font-gtultraFine ${
+        isLoading && "bg-gray-300"
+      }`}
     >
-      {children}
+      {isLoading ? <Spinning /> : children}
     </button>
   );
 };
