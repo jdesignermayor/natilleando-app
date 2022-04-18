@@ -27,7 +27,7 @@ export function useSupabase() {
       setIsLoading(false);
     }
   };
-
+  
   useEffect(() => {
     getMembers();
   }, []);
