@@ -46,7 +46,7 @@ export const SignIn = () => {
             id="documentNumber"
             name="documentNumber"
             placeholder="Ingresa tu cedula"
-            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 hover:ring-4"
+            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 hover:ring-4 text-base"
             onChange={handleInputChange}
             required
           />
