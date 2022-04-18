@@ -42,7 +42,7 @@ export const SignIn = () => {
             Ingresa la clave (número de cédula)
           </label>
           <input
-            type="password"
+            type="number"
             id="documentNumber"
             name="documentNumber"
             placeholder="Ingresa tu cedula"
