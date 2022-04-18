@@ -48,6 +48,7 @@ export const SignIn = () => {
             placeholder="Ingresa tu cedula"
             className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 hover:ring-4 text-base"
             onChange={handleInputChange}
+            pattern="[0-9]*"
             required
           />
         </div>
