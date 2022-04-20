@@ -4,37 +4,37 @@ export const landingData = {
             id: 1,
             title: 'Normas',
             colorClassName: 'bg-green-100',
-            href: '#rules'
+            href: 'rules'
         },
         {
             id: 2,
             title: 'Creditos',
             colorClassName: 'bg-violet-100',
-            href: '#credits'
+            href: 'credits'
         },
         {
             id: 3,
             title: 'Multas e interés',
             colorClassName: 'bg-orange-100',
-            href: '#debts'
+            href: 'debts'
         },
         {
             id: 4,
             title: 'Requisitos',
             colorClassName: 'bg-blue-100',
-            href: '#requirements'
+            href: 'requirements'
         },
         {
             id: 5,
             title: 'Rifas y eventos',
             colorClassName: 'bg-pink-100',
-            href: '#events'
+            href: 'events'
         },
         {
             id: 6,
             title: 'Liquidación',
             colorClassName: 'bg-red-100',
-            href: '#payment'
+            href: 'payment'
         }
     ],
     items: [
@@ -79,7 +79,7 @@ export const landingData = {
                 }
                 
             ],
-            href: '#rules'
+            href: 'rules'
         },
         {
             id: 2,
@@ -101,7 +101,7 @@ export const landingData = {
                     label: 'Para mantener actualizada la información de los socios, se debe diligenciar el formulario de datos que hay en la app.'
                 }
             ],
-            href: '#requirements'
+            href: 'requirements'
         },
         {
             id: 3,
@@ -127,7 +127,7 @@ export const landingData = {
                     label: 'Impulsamos la buena gestión del dinero, así que el socio que no pague así sea un mes, automáticamente será expulsado de la natillera.'
                 }
             ],
-            href: '#debts'
+            href: 'debts'
         },
         {
             id: 4,
@@ -153,7 +153,7 @@ export const landingData = {
                     label: 'Los créditos solicitados por la app se gestionará más rápido su desembolso.'
                 }
             ],
-            href: '#credits'
+            href: 'credits'
         },
         {
             id: 5,
@@ -171,7 +171,7 @@ export const landingData = {
                     label: 'Socio que por algún motivo no haya cancelado la rifa al momento del sorteo, no entrara a participar en el mismo.'
                 },
             ],
-            href: '#events'
+            href: 'events'
         },
         {
             id: 6,
@@ -183,7 +183,7 @@ export const landingData = {
             <p class="mt-5">Estas normas podrán cambiar de acuerdo a las nuevas Estipulaciones de <span class="font-bold">Natilleando</span>.</p>
             `,
             subItems: '',
-            href: '#payment'
+            href: 'payment'
         }
     ],
     subscribeItem: {
