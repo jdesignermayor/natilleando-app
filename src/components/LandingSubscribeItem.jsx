@@ -1,5 +1,5 @@
 import React from 'react'
-import { landingData } from '../utils/landing';
+import { landingData } from '../data/landing';
 import { Markup } from 'interweave';
 
 import Illustration from '../assets/images/KeynoteButt.gif';

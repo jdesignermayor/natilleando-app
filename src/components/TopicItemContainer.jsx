@@ -1,5 +1,5 @@
 import React from 'react'
-import { landingData } from '../utils/landing';
+import { landingData } from '../data/landing';
 
 import { TopicItem } from '../components/TopicItem';
 
