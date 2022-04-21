@@ -1,6 +1,6 @@
 import React from 'react';
 import { TopicButton } from '../components/TopicButton';
-import { landingData } from '../utils/landing';
+import { landingData } from '../data/landing';
 
 export const TopicButtonsContainer = () => {
     const { buttonsCover } = landingData;
