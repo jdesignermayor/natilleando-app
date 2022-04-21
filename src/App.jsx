@@ -13,10 +13,11 @@ import { RegisterLanding } from './pages/landing/RegisterLanding';
 import { Navbar } from './components/Navbar';
 
 import { useAuth, AuthProvider } from "./context/AuthContext";
+import { CreateSaving } from './pages/dashboard/CreateSaving';
 
 const ProtectedRoute = ({ children }) => {
   const { state } = useAuth();
-  
+
   if (!state?.user) {
     return <Navigate to="/login" replace />;
   }
@@ -40,6 +41,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="dashboard/create-saving"
+            element={
+              <ProtectedRoute>
+                <CreateSaving />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="*"
             element={<p className="pt-40">There's nothing here: 404!</p>}
