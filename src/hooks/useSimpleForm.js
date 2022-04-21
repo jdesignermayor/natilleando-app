@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-export const useSimpleForm = () => {
+export function useSimpleForm() {
   const [formData, setFormData] = useState({});
   const [isLoadingForm, setIsLoadingForm] = useState(false);
+  const [isErrorForm, setIsErrorForm] = useState(false);
 
   const handleInputChange = (event) => {
     setFormData({
@@ -15,6 +16,8 @@ export const useSimpleForm = () => {
     formData,
     handleInputChange,
     isLoadingForm,
+    isErrorForm,
     setIsLoadingForm,
+    setIsErrorForm,
   };
 }

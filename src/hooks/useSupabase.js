@@ -28,12 +28,35 @@ export function useSupabase() {
     }
   };
 
+  const validateLogin = async ({ id, password }) => {
+      try {
+        let { data, error, status } = await supabase
+          .from("users")
+          .select("id, name, surname, document_number, photo_url, whatsapp_number, referer_id")
+          .eq("id", id)
+          .eq("document_number", password);
+
+        if (error && status !== 406) {
+          throw error;
+        }
+
+        if (data.length > 0) {
+          return Promise.resolve(data[0]);
+        }else{
+          return Promise.reject(data);
+        }
+      } catch (error) {
+        return Promise.reject(error);
+      }
+  };
+
   useEffect(() => {
     getMembers();
   }, []);
 
   return {
     isLoading,
-    members
+    members,
+    validateLogin,
   };
 }

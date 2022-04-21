@@ -1,24 +1,40 @@
-import { useEffect, useState } from 'react';
-
+import { useAuth } from '../../context/AuthContext';
 import { useSupabase } from '../../hooks/useSupabase';
 import { useSimpleForm } from '../../hooks/useSimpleForm';
-
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button';
 
 export const SignIn = () => {
-  const { members } = useSupabase();
-  const { formData, handleInputChange, isLoadingForm, setIsLoadingForm } =
+  const { members, validateLogin } = useSupabase();
+  const { formData, handleInputChange, isLoadingForm, setIsLoadingForm, isErrorForm, setIsErrorForm } =
     useSimpleForm();
 
-  const onHandleSubmit = (event) => {
+  const { state, dispatch } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoadingForm(true);
-    console.log(formData);
-  }
+    try {
+      const dataUser = await validateLogin({
+        id: formData?.userId,
+        password: formData?.documentNumber,
+      });
+
+      dispatch({ type: "loggedIn", user: { ...dataUser } });
+      navigate("/dashboard");
+
+      setIsLoadingForm(false);
+      setIsErrorForm(false);
+    } catch (error) {
+      setIsLoadingForm(false);
+      setIsErrorForm(true);
+    }
+  };
 
   return (
     <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%]">
-      <form onSubmit={onHandleSubmit} className="grid gap-5 font-gtultraFine">
+      <form onSubmit={handleSubmit} className="grid gap-5 font-gtultraFine">
         <p className="text-4xl font-gtultraFine font-bold">Iniciar sesión</p>
         <div className="grid gap-2">
           <label htmlFor="userId">Selecciona el socio</label>
@@ -52,6 +68,7 @@ export const SignIn = () => {
             required
           />
         </div>
+        { isErrorForm && <p className="text-red-500 text-sm">Contraseña incorrecta</p> }
         <Button type="submit" isLoading={isLoadingForm}>
           Iniciar sesion
         </Button>
