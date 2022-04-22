@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from "../context/AuthContext";
+import { useAuthentication } from '../hooks/useAuthentication';
 
 import Logo from '../assets/images/four-leaf.png';
 import IconSignOut from '../assets/icons/exit.svg';
 
 export const Navbar = () => {
   const { state } = useAuth();
+  const { onLogOut } = useAuthentication();
   const { user } = state;
 
   return (
@@ -21,13 +23,13 @@ export const Navbar = () => {
       </Link>
       <div className="items-center">
         {user ? (
-          <Link
-            to="/login"
+          <button
+            onClick={onLogOut}
             className="flex items-center justify-between gap-2 text-black bg-white transition py-2 px-5 w-full"
           >
             <img src={IconSignOut} width="30" alt="Salir" />
             Salir
-          </Link>
+          </button>
         ) : (
           <Link
             to="/login"
