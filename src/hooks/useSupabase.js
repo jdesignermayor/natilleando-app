@@ -6,8 +6,10 @@ const MEMBER_ROLE = 3;
 export function useSupabase() {
   const [isLoading, setIsLoading] = useState(false);
   const [members, setMembers] = useState([]);
+  const [payments, setPayments] = useState([]);
 
   const getMembers = async () => {
+    console.log("executed get members");
     setIsLoading(true);
     try {
       let { data, error, status } = await supabase
@@ -40,6 +42,7 @@ export function useSupabase() {
           throw error;
         }
 
+      
         if (data.length > 0) {
           return Promise.resolve(data[0]);
         }else{
@@ -50,13 +53,51 @@ export function useSupabase() {
       }
   };
 
-  useEffect(() => {
-    getMembers();
-  }, []);
+  const getPaymentsById = async(id) => {
+    try {
+      setIsLoading(true);
+      let { data, error, status } = await supabase
+        .from("payment_history")
+        .select(
+          "id, user_id, amount, payment_date, payment_type, payment_status"
+        )
+        .eq("user_id", 42);
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      console.log(data);
+
+       if (data.length > 0) {
+         setIsLoading(false);
+         setPayments(data);
+         return Promise.resolve(data[0]);
+       } else {
+         setIsLoading(false);
+         return Promise.reject(data);
+       }
+     } catch (error) {
+       setIsLoading(false);
+       return Promise.reject(error);
+     }
+  }
+
+
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   isMounted && getMembers();
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, []);
 
   return {
     isLoading,
     members,
+    payments,
     validateLogin,
+    getPaymentsById,
+    getMembers,
   };
 }
