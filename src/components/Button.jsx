@@ -1,7 +1,7 @@
 import { Spinning } from "../components/Spinning";
 import AddWhite from "../assets/icons/addWhite.svg";
 import DebtIcon from "../assets/icons/credit-cardWhite.svg";
-import EyeIcon from "../assets/icons/eye-closed.svg";
+import EyeIcon from "../assets/icons/eye.svg";
 
 const IconType = (type) => {
   switch (type) {
@@ -28,13 +28,15 @@ export const Button = ({
   isLoading = false,
   icon = null,
   primary = true,
+  onHandleClick = () => { console.log('clicked')},
 }) => {
   return (
     <button
       type={type}
       disabled={isLoading}
+      onClick={onHandleClick}
       className={`flex gap-2 items-center  justify-center ${
-        primary ? "bg-black text-white" : "bg-green-100 text-black"
+        primary ? "bg-black text-white" : " text-black border border-black"
       }  transition py-3 px-7 w-full hover:opacity-60 h-12 text-base font-gtultraFine ${
         isLoading && "bg-gray-300"
       }`}
