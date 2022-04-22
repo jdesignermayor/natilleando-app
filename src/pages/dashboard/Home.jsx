@@ -1,14 +1,21 @@
-import {useEffect } from 'react';
-
+import { useEffect } from 'react';
 import { useSupabase } from '../../hooks/useSupabase';
+import { useAuth } from '../../context/AuthContext';
+
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
 
 export const Home = () => {
-  const { getPaymentsById, payments, isLoading } = useSupabase();
+  const { getPaymentsById, payments, isLoading } = useSupabase();  
+ 
+  const {
+    state: { user },
+  } = useAuth();
+
+  const { id, name, surname } = user;
 
   const getPayments = () => {
-     getPaymentsById(42);
+    getPaymentsById(id);
   };
 
   useEffect(() => {
@@ -17,13 +24,18 @@ export const Home = () => {
 
   return (
     <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 font-gtultraFine pt-20">
-      <h1 className="font-black text-2xl">Resumen</h1>
+      <h1 className="font-black text-2xl">Hola {name} {surname}</h1>
       <ul className="flex flex-col gap-4">
         <li>
           <div>
             <p className="font-bold text-3xl">Total ahorrado 💰</p>
             <p className="text-2xl">$1.800.000</p>
-            <Button icon="PAYMENT" isLoading={isLoading} primary={false} onHandleClick={getPayments}>
+            <Button
+              icon="PAYMENT"
+              isLoading={isLoading}
+              primary={false}
+              onHandleClick={getPayments}
+            >
               Ver todos mis aportes
             </Button>
           </div>

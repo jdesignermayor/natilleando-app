@@ -61,7 +61,7 @@ export function useSupabase() {
         .select(
           "id, user_id, amount, payment_date, payment_type, payment_status"
         )
-        .eq("user_id", 42);
+        .eq("user_id", id);
 
       if (error && status !== 406) {
         throw error;
@@ -83,14 +83,6 @@ export function useSupabase() {
      }
   }
 
-
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   isMounted && getMembers();
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // }, []);
 
   return {
     isLoading,
