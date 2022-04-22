@@ -32,7 +32,7 @@ export const Home = () => {
         <li>
           <div>
             <p className="font-bold text-3xl">Total ahorrado 💰</p>
-            <p className="text-2xl">$1.800.000</p>
+            {/* <p className="text-2xl">$1.800.000</p> */}
             {payments.length <= 0 && (
               <Button
                 icon="PAYMENT"
@@ -49,7 +49,7 @@ export const Home = () => {
             />
           </div>
         </li>
-        <li>
+        {/* <li>
           <div className="text-base">
             <p className="font-bold text-2xl">Total natilleando</p>
             <div className="grid gap-3 grid-cols-1 divide-y pt-4">
@@ -71,7 +71,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
-        </li>
+        </li> */}
       </ul>
       <div className="grid lg:flex gap-2">
         <Link to="create-saving" className="w-full">

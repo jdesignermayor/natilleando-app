@@ -1,5 +1,6 @@
 import React from 'react'
 import { Badge } from '../components/Badge';
+import { moneyFormat, dateFormat } from "../utils/formats";
 
 export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
   if (itemsList.length > 0) {
@@ -19,12 +20,9 @@ export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
         <tbody>
           {itemsList?.map(({ id, amount, payment_date, payment_status }) => {
             return (
-              <tr key={id} className="bg-white border-b  ">
-                <th
-                  scope="row"
-                  className="px-2 py-2 font-medium text-gray-900 "
-                >
-                  $ {amount}
+              <tr key={id} className="bg-white border-b ">
+                <th scope="row" className="px-2 py-2  text-gray-900">
+                  <p className="font-bold">{moneyFormat(amount)}</p>
                 </th>
                 <th
                   scope="row"
@@ -40,7 +38,7 @@ export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
                   scope="row"
                   className="px-2 py-2 font-medium text-gray-900 "
                 >
-                  {payment_date}
+                  {dateFormat(payment_date)}
                 </th>
               </tr>
             );
