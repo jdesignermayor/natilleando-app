@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthentication } from '../../hooks/useAuthentication';
 import { useSupabase } from '../../hooks/useSupabase';
 import { useSimpleForm } from '../../hooks/useSimpleForm';
-import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../components/Button';
 
@@ -10,8 +9,7 @@ export const SignIn = () => {
   const { members, validateLogin, getMembers } = useSupabase();
   const { formData, handleInputChange, isLoadingForm, setIsLoadingForm, isErrorForm, setIsErrorForm } =
     useSimpleForm();
-  const { state, dispatch } = useAuth();
-  const navigate = useNavigate();
+  const { onLogIn } = useAuthentication();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,8 +20,7 @@ export const SignIn = () => {
         password: formData?.documentNumber,
       });
 
-      dispatch({ type: "loggedIn", user: { ...dataUser } });
-      navigate("/dashboard");
+      onLogIn(dataUser);
 
       setIsLoadingForm(false);
       setIsErrorForm(false);

@@ -10,8 +10,9 @@ export function useAuthentication(){
         navigate("/login");
     }
 
-    function onLogIn(){
-
+    function onLogIn(dataUser){
+        dispatch({ type: "loggedIn", user: { ...dataUser } });
+        navigate("/dashboard");
     }
 
     return {
