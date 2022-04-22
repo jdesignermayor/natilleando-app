@@ -1,14 +1,15 @@
+import { useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useSupabase } from '../../hooks/useSupabase';
 import { useSimpleForm } from '../../hooks/useSimpleForm';
 import { useNavigate } from 'react-router-dom';
+
 import { Button } from '../../components/Button';
 
 export const SignIn = () => {
-  const { members, validateLogin } = useSupabase();
+  const { members, validateLogin, getMembers } = useSupabase();
   const { formData, handleInputChange, isLoadingForm, setIsLoadingForm, isErrorForm, setIsErrorForm } =
     useSimpleForm();
-
   const { state, dispatch } = useAuth();
   const navigate = useNavigate();
 
@@ -31,6 +32,10 @@ export const SignIn = () => {
       setIsErrorForm(true);
     }
   };
+
+  useEffect(() => {
+    getMembers();
+  },[]);
 
   return (
     <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%]">
