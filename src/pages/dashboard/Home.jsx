@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
-import { useSupabase } from '../../hooks/useSupabase';
-import { useAuth } from '../../context/AuthContext';
+import { useEffect } from "react";
+import { useSupabase } from "../../hooks/useSupabase";
+import { useAuth } from "../../context/AuthContext";
 
-import { Link } from 'react-router-dom';
-import { Button } from '../../components/Button';
-import { TransactionsHistoryTable } from '../../components/TransactionsHistoryTable';
+import { Link } from "react-router-dom";
+import { Button } from "../../components/Button";
+import { TransactionsHistoryTable } from "../../components/TransactionsHistoryTable";
 
 export const Home = () => {
-  const { getPaymentsById, payments, isLoading } = useSupabase();  
- 
+  const { getPaymentsById, payments, isLoading } = useSupabase();
+
   const {
     state: { user },
   } = useAuth();
@@ -26,7 +26,10 @@ export const Home = () => {
   return (
     <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 font-gtultraFine pt-20">
       <h1 className="font-black text-2xl">
-        Hola {name} {surname}
+        Hola{" "}
+        <span className="capitalize">
+          {name} {surname}
+        </span>
       </h1>
       <ul className="flex flex-col gap-4">
         <li>
@@ -83,4 +86,4 @@ export const Home = () => {
       </div>
     </div>
   );
-}
+};

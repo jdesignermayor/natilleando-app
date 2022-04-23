@@ -50,7 +50,7 @@ export const SignIn = () => {
           <select
             id="userId"
             name="userId"
-            className="w-full bg-slate-100 py-5 px-7 focus:bg-slate-200 hover:ring-4 appearance-none"
+            className="w-full bg-slate-100 py-5 px-7 focus:bg-slate-200 active:ring-5 appearance-none"
             onChange={handleInputChange}
             required
           >
@@ -71,7 +71,7 @@ export const SignIn = () => {
             id="documentNumber"
             name="documentNumber"
             placeholder="Ingresa tu cedula"
-            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 hover:ring-4 text-base"
+            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 active:ring-5 text-base"
             onChange={handleInputChange}
             pattern="[0-9]*"
             required
