@@ -1,14 +1,21 @@
-import { useEffect } from 'react';
-import { useAuthentication } from '../../hooks/useAuthentication';
-import { useSupabase } from '../../hooks/useSupabase';
-import { useSimpleForm } from '../../hooks/useSimpleForm';
+import { useAuthentication } from "../../hooks/useAuthentication";
+import { useEffect } from "react";
+import { useSimpleForm } from "../../hooks/useSimpleForm";
+import { useSupabase } from "../../hooks/useSupabase";
 
-import { Button } from '../../components/Button';
+import { Button } from "../../components/Button";
 
 export const SignIn = () => {
   const { members, validateLogin, getMembers } = useSupabase();
-  const { formData, handleInputChange, isLoadingForm, setIsLoadingForm, isErrorForm, setIsErrorForm } =
-    useSimpleForm();
+  const {
+    formData,
+    handleInputChange,
+    isLoadingForm,
+    isErrorForm,
+    setIsLoadingForm,
+    setIsErrorForm,
+  } = useSimpleForm();
+
   const { onLogIn } = useAuthentication();
 
   const handleSubmit = async (event) => {
@@ -32,7 +39,7 @@ export const SignIn = () => {
 
   useEffect(() => {
     getMembers();
-  },[]);
+  }, []);
 
   return (
     <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%]">
@@ -70,11 +77,13 @@ export const SignIn = () => {
             required
           />
         </div>
-        { isErrorForm && <p className="text-red-500 text-sm">Contraseña incorrecta</p> }
+        {isErrorForm && (
+          <p className="text-red-500 text-sm">Contraseña incorrecta</p>
+        )}
         <Button type="submit" isLoading={isLoadingForm}>
           Iniciar sesion
         </Button>
       </form>
     </div>
   );
-}
+};

@@ -6,7 +6,7 @@ export const TopicButton = ({ href, title, colorClassName }) => {
   return (
     <a
       href={`#${href}`}
-      className={`flex ${colorClassName} justify-between transition font-bold items-center bg-primaryLight py-4 px-7 w-full h-16 hover:opacity-60 border-transparent hover:border-black`}
+      className={`flex ${colorClassName} justify-between transition font-bold items-center bg-primaryLight px-3 h-16 hover:opacity-60 border-transparent hover:border-black`}
       rel="noopener"
     >
       {title}
