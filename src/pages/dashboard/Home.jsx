@@ -16,6 +16,7 @@ export const Home = () => {
     getPaymensSummary,
     payments,
     paymentsSummary,
+    isLoading,
     isLoadingSummary,
     isLoadingPayments,
   } = useSupabase();
@@ -26,9 +27,12 @@ export const Home = () => {
 
   const { id, name, surname } = user;
 
+  const getPayments = () => {
+    getPaymentsById(id);
+  };
+
   useEffect(() => {
     getPaymensSummary(id);
-    getPaymentsById(id);
   }, []);
 
   return (
@@ -50,6 +54,17 @@ export const Home = () => {
               <p className="text-4xl font-bold ">
                 {moneyFormat(paymentsSummary.total)}
               </p>
+            )}
+
+            {payments.length <= 0 && (
+              <Button
+                icon="PAYMENT"
+                isLoading={isLoading}
+                primary={false}
+                onHandleClick={getPayments}
+              >
+                Ver movimientos
+              </Button>
             )}
 
             <div className="grid gap-4">
