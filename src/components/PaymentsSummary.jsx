@@ -6,7 +6,7 @@ export const PaymentsSummary = () => {
     <ContentLoader
       speed={2}
       className="w-full"
-      height={124}
+      height={165}
       viewBox="0 0 476 124"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
