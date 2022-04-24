@@ -22,12 +22,9 @@ export const Home = () => {
 
   const { id, name, surname } = user;
 
-  const getPayments = () => {
-    getPaymentsById(id);
-  };
-
   useEffect(() => {
     getPaymensSummary(id);
+    getPaymentsById(id);
   }, []);
 
   return (
@@ -41,12 +38,12 @@ export const Home = () => {
       <ul className="flex flex-col gap-4">
         <li>
           <div className="flex flex-col gap-4">
-            <p className="text-3xl">Total ahorrado 💰</p>
-            <p className="text-5xl font-bold ">
+            <p className="text-2xl">Total ahorrado 💰</p>
+            <p className="text-4xl font-bold ">
               {moneyFormat(paymentsSummary.total)}
             </p>
 
-            {payments.length <= 0 && (
+            {/* {payments.length <= 0 && (
               <Button
                 icon="PAYMENT"
                 isLoading={isLoading}
@@ -55,7 +52,7 @@ export const Home = () => {
               >
                 Ver movimientos
               </Button>
-            )}
+            )} */}
 
             <TransactionsHistoryTable
               title="Historial de ahorro 💸"
@@ -64,29 +61,6 @@ export const Home = () => {
             />
           </div>
         </li>
-        {/* <li>
-          <div className="text-base">
-            <p className="font-bold text-2xl">Total natilleando</p>
-            <div className="grid gap-3 grid-cols-1 divide-y pt-4">
-              <div>
-                <p>Total ahorro socios</p>
-                <p className="font-bold">$1.800.000</p>
-              </div>
-              <div>
-                <p>Total inscripcion socios</p>
-                <p className="font-bold">$200.000</p>
-              </div>
-              <div>
-                <p>Total rifas socios</p>
-                <p className="font-bold">$200.000</p>
-              </div>
-              <div>
-                <p>Total multas socios</p>
-                <p className="font-bold">$200.000</p>
-              </div>
-            </div>
-          </div>
-        </li> */}
       </ul>
       <div className="grid lg:flex gap-2">
         <Link to="create-saving" className="w-full">

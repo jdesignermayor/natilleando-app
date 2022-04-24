@@ -6,7 +6,7 @@ export const TransactionsHistoryTable = ({ title, labelList, itemsList }) => {
   if (itemsList.length > 0) {
     return (
       <div className="grid gap-4">
-        <p className="text-3xl">{title}</p>
+        <p className="text-2xl">{title}</p>
         <table className="table-auto w-full pt-4 pb-4 font-gtultra ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
             <tr className=" border-b">
