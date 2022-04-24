@@ -49,7 +49,7 @@ export const Home = () => {
           <div className="flex flex-col gap-4">
             <p className="text-2xl">Total ahorrado 💰</p>
             {isLoadingSummary ? (
-              <PaymentsSummary />
+              <p className="text-4xl font-bold ">Cargando...</p>
             ) : (
               <p className="text-4xl font-bold ">
                 {moneyFormat(paymentsSummary.total)}
