@@ -7,6 +7,9 @@ export function useSupabase() {
   const [isLoading, setIsLoading] = useState(false);
   const [members, setMembers] = useState([]);
   const [payments, setPayments] = useState([]);
+  const [paymentsSummary, setPaymentsSummary] = useState({
+    total: 0
+  });
 
   const getMembers = async () => {
     console.log("executed get members");
@@ -53,6 +56,29 @@ export function useSupabase() {
     }
   };
 
+  const getPaymensSummary = async (user_id) => {
+    try {
+      const { data, error, status } = await supabase
+        .rpc('getsummary', {
+          _user_id: user_id
+        })
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data.length > 0) {
+        const result = data[0];
+        setPaymentsSummary(result);
+        return Promise.resolve(result);
+      }
+
+    } catch (error) {
+
+      return Promise.reject(error);
+    }
+  }
+
   const getPaymentsById = async (id) => {
     try {
       setIsLoading(true);
@@ -86,8 +112,10 @@ export function useSupabase() {
     isLoading,
     members,
     payments,
+    paymentsSummary,
     validateLogin,
     getPaymentsById,
     getMembers,
+    getPaymensSummary,
   };
 }

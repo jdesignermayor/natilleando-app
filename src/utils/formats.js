@@ -1,7 +1,8 @@
 export const moneyFormat = (value) => {
-  const newValue = Intl.NumberFormat("en-IN", {
+  const newValue = Intl.NumberFormat("es-CO", {
     style: "currency",
     currency: "COP",
+
   }).format(value);
 
   return newValue;
@@ -10,7 +11,7 @@ export const moneyFormat = (value) => {
 export const dateFormat = (value) => {
   let newDateValue = Date.parse(value);
 
-  const newValue = Intl.DateTimeFormat("en-GB", {
+  const newValue = Intl.DateTimeFormat("es-CO", {
     year: "numeric",
     month: "long",
     day: "2-digit",

@@ -5,9 +5,16 @@ import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { TransactionsHistoryTable } from "../../components/TransactionsHistoryTable";
+import { moneyFormat } from "../../utils/formats";
 
 export const Home = () => {
-  const { getPaymentsById, payments, isLoading } = useSupabase();
+  const {
+    getPaymentsById,
+    getPaymensSummary,
+    payments,
+    paymentsSummary,
+    isLoading,
+  } = useSupabase();
 
   const {
     state: { user },
@@ -20,22 +27,25 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    console.table("payments:", payments);
-  }, [payments]);
+    getPaymensSummary(id);
+  }, []);
 
   return (
     <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 font-gtultraFine pt-20">
-      <h1 className="font-black text-2xl">
+      <h1 className="text-xl">
         Hola{" "}
         <span className="capitalize">
-          {name} {surname}
+          {name} {surname} 👋
         </span>
       </h1>
       <ul className="flex flex-col gap-4">
         <li>
-          <div>
-            <p className="font-bold text-3xl">Total ahorrado 💰</p>
-            {/* <p className="text-2xl">$1.800.000</p> */}
+          <div className="flex flex-col gap-4">
+            <p className="text-3xl">Total ahorrado 💰</p>
+            <p className="text-5xl font-bold ">
+              {moneyFormat(paymentsSummary.total)}
+            </p>
+
             {payments.length <= 0 && (
               <Button
                 icon="PAYMENT"
@@ -46,7 +56,9 @@ export const Home = () => {
                 Ver movimientos
               </Button>
             )}
+
             <TransactionsHistoryTable
+              title="Historial de ahorro 💸"
               labelList={["Valor", "Estado", "Fecha"]}
               itemsList={payments}
             />
