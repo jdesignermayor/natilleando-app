@@ -5,6 +5,9 @@ const MEMBER_ROLE = 3;
 
 export function useSupabase() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingSummary, setIsLoadingSummary] = useState(false);
+  const [isLoadingPayments, setIsLoadingPayments] = useState(false);
+
   const [members, setMembers] = useState([]);
   const [payments, setPayments] = useState([]);
   const [paymentsSummary, setPaymentsSummary] = useState({
@@ -45,7 +48,6 @@ export function useSupabase() {
         throw error;
       }
 
-
       if (data.length > 0) {
         return Promise.resolve(data[0]);
       } else {
@@ -57,6 +59,7 @@ export function useSupabase() {
   };
 
   const getPaymensSummary = async (user_id) => {
+    setIsLoadingSummary(true);
     try {
       const { data, error, status } = await supabase
         .rpc('getsummary', {
@@ -70,18 +73,19 @@ export function useSupabase() {
       if (data.length > 0) {
         const result = data[0];
         setPaymentsSummary(result);
+        setIsLoadingSummary(false);
         return Promise.resolve(result);
       }
 
     } catch (error) {
-
+      setIsLoadingSummary(false);
       return Promise.reject(error);
     }
   }
 
   const getPaymentsById = async (id) => {
     try {
-      setIsLoading(true);
+      setIsLoadingPayments(true);
       const { data, error, status } = await supabase
         .from("payments_history")
         .select(
@@ -94,15 +98,15 @@ export function useSupabase() {
       }
 
       if (data.length > 0) {
-        setIsLoading(false);
+        setIsLoadingPayments(false);
         setPayments(data);
         return Promise.resolve(data[0]);
       } else {
-        setIsLoading(false);
+        setIsLoadingPayments(false);
         return Promise.reject(data);
       }
     } catch (error) {
-      setIsLoading(false);
+      setIsLoadingPayments(false);
       return Promise.reject(error);
     }
   }
@@ -110,6 +114,8 @@ export function useSupabase() {
 
   return {
     isLoading,
+    isLoadingSummary,
+    isLoadingPayments,
     members,
     payments,
     paymentsSummary,

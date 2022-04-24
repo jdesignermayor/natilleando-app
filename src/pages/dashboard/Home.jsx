@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
+import { moneyFormat } from "../../utils/formats";
+
 import { useEffect } from "react";
 import { useSupabase } from "../../hooks/useSupabase";
 import { useAuth } from "../../context/AuthContext";
 
-import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { TransactionsHistoryTable } from "../../components/TransactionsHistoryTable";
-import { moneyFormat } from "../../utils/formats";
+import { PaymentsLoader } from "../../components/PaymentsLoader";
+import { PaymentsSummary } from "../../components/PaymentsSummary";
 
 export const Home = () => {
   const {
@@ -13,7 +16,8 @@ export const Home = () => {
     getPaymensSummary,
     payments,
     paymentsSummary,
-    isLoading,
+    isLoadingSummary,
+    isLoadingPayments,
   } = useSupabase();
 
   const {
@@ -35,30 +39,30 @@ export const Home = () => {
           {name} {surname} 👋
         </span>
       </h1>
+
       <ul className="flex flex-col gap-4">
         <li>
           <div className="flex flex-col gap-4">
             <p className="text-2xl">Total ahorrado 💰</p>
-            <p className="text-4xl font-bold ">
-              {moneyFormat(paymentsSummary.total)}
-            </p>
+            {isLoadingSummary ? (
+              <PaymentsSummary />
+            ) : (
+              <p className="text-4xl font-bold ">
+                {moneyFormat(paymentsSummary.total)}
+              </p>
+            )}
 
-            {/* {payments.length <= 0 && (
-              <Button
-                icon="PAYMENT"
-                isLoading={isLoading}
-                primary={false}
-                onHandleClick={getPayments}
-              >
-                Ver movimientos
-              </Button>
-            )} */}
-
-            <TransactionsHistoryTable
-              title="Historial de ahorro 💸"
-              labelList={["Valor", "Estado", "Fecha"]}
-              itemsList={payments}
-            />
+            <div className="grid gap-4">
+              <p className="text-2xl">Historial de ahorro 💸</p>
+              {isLoadingPayments ? (
+                <PaymentsLoader />
+              ) : (
+                <TransactionsHistoryTable
+                  labelList={["Valor", "Estado", "Fecha"]}
+                  itemsList={payments}
+                />
+              )}
+            </div>
           </div>
         </li>
       </ul>
