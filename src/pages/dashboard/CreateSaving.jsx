@@ -1,5 +1,6 @@
-import React from 'react'
-import { Button } from '../../components/Button';
+import React from "react";
+import { Button } from "../../components/Button";
+import { PaymentsContainer } from "../../components/PaymentsContainer";
 
 export const CreateSaving = () => {
   return (
@@ -42,6 +43,9 @@ export const CreateSaving = () => {
             required
           />
         </div>
+        <div>
+          <PaymentsContainer />
+        </div>
         <div className="grid gap-2">
           <label htmlFor="documentNumber">Selecciona el banco</label>
         </div>
@@ -49,4 +53,4 @@ export const CreateSaving = () => {
       </form>
     </div>
   );
-}
+};

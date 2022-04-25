@@ -1,10 +1,11 @@
-import React from 'react'
-import { Badge } from '../components/Badge';
+import { moneyFormat, dateFormat } from "../utils/formats";
+
+import { Badge } from "../components/Badge";
 
 export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
-  if (itemsList.length > 0) {
+  if (itemsList?.length > 0) {
     return (
-      <table className="table-auto w-full border rounded pt-4 pb-4 font-gtultra">
+      <table className="table-auto w-full pt-4 pb-4 font-gtultra ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr className=" border-b">
             {labelList?.map((name, index) => {
@@ -19,12 +20,9 @@ export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
         <tbody>
           {itemsList?.map(({ id, amount, payment_date, payment_status }) => {
             return (
-              <tr key={id} className="bg-white border-b  ">
-                <th
-                  scope="row"
-                  className="px-2 py-2 font-medium text-gray-900 "
-                >
-                  $ {amount}
+              <tr key={id} className="bg-white border-b rounded">
+                <th scope="row" className="px-2 py-2  text-gray-900">
+                  <p className="font-bold">{moneyFormat(amount)}</p>
                 </th>
                 <th
                   scope="row"
@@ -40,7 +38,7 @@ export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
                   scope="row"
                   className="px-2 py-2 font-medium text-gray-900 "
                 >
-                  {payment_date}
+                  {dateFormat(payment_date)}
                 </th>
               </tr>
             );
@@ -52,4 +50,3 @@ export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
     return null;
   }
 };
-

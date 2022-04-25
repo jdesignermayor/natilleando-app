@@ -86,9 +86,16 @@ insert into payment_history(amount, payment_type, user_id, payment_date, tags, m
 insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('15000', 2, 44, current_timestamp,'1',2 );
 insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('20000', 2, 44, current_timestamp,'1',3 );
 
-Marleny unchecked:
+Marleny checked:
 insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('100000', 2, 45, current_timestamp,'1',1 );
 insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('50000', 2, 45, current_timestamp, '1',2 );
 insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('50000', 2, 45, current_timestamp, '1',3 );
 insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('50000', 2, 45, current_timestamp, '1',4 );
 insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('50000', 2, 45, current_timestamp, '1',5 );
+
+Jose Luis check:
+insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('60000', 2, 1, current_timestamp,'1',1 );
+insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('60000', 2, 1, current_timestamp, '1',2 );
+insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('60000', 2, 1, current_timestamp, '1',3 );
+insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('60000', 2, 1, current_timestamp, '1',4 );
+insert into payment_history(amount, payment_type, user_id, payment_date, tags, month_number) values ('60000', 2, 1, current_timestamp, '1',5 );

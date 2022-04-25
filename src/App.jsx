@@ -1,19 +1,12 @@
-import './App.css'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate
-} from 'react-router-dom';
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { Home } from './pages/dashboard/Home';
-import { HomeLanding } from './pages/landing/HomeLanding';
-import { SignIn } from './pages/auth/SignIn';
-import { RegisterLanding } from './pages/landing/RegisterLanding'; 
-import { Navbar } from './components/Navbar';
-
-import { useAuth, AuthProvider } from "./context/AuthContext";
-import { CreateSaving } from './pages/dashboard/CreateSaving';
+import { CreateSaving } from "./pages/dashboard/CreateSaving";
+import { Home } from "./pages/dashboard/Home";
+import { HomeLanding } from "./pages/landing/HomeLanding";
+import { Navbar } from "./components/Navbar";
+import { RegisterLanding } from "./pages/landing/RegisterLanding";
+import { SignIn } from "./pages/auth/SignIn";
 
 const ProtectedRoute = ({ children }) => {
   const { state } = useAuth();
@@ -23,6 +16,7 @@ const ProtectedRoute = ({ children }) => {
   }
   return children;
 };
+
 
 function App() {
   return (
@@ -61,4 +55,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

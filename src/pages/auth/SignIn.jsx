@@ -1,14 +1,21 @@
-import { useEffect } from 'react';
-import { useAuthentication } from '../../hooks/useAuthentication';
-import { useSupabase } from '../../hooks/useSupabase';
-import { useSimpleForm } from '../../hooks/useSimpleForm';
+import { useAuthentication } from "../../hooks/useAuthentication";
+import { useEffect } from "react";
+import { useSimpleForm } from "../../hooks/useSimpleForm";
+import { useSupabase } from "../../hooks/useSupabase";
 
-import { Button } from '../../components/Button';
+import { Button } from "../../components/Button";
 
 export const SignIn = () => {
   const { members, validateLogin, getMembers } = useSupabase();
-  const { formData, handleInputChange, isLoadingForm, setIsLoadingForm, isErrorForm, setIsErrorForm } =
-    useSimpleForm();
+  const {
+    formData,
+    handleInputChange,
+    isLoadingForm,
+    isErrorForm,
+    setIsLoadingForm,
+    setIsErrorForm,
+  } = useSimpleForm();
+
   const { onLogIn } = useAuthentication();
 
   const handleSubmit = async (event) => {
@@ -32,7 +39,7 @@ export const SignIn = () => {
 
   useEffect(() => {
     getMembers();
-  },[]);
+  }, []);
 
   return (
     <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%]">
@@ -43,7 +50,7 @@ export const SignIn = () => {
           <select
             id="userId"
             name="userId"
-            className="w-full bg-slate-100 py-5 px-7 focus:bg-slate-200 hover:ring-4 appearance-none"
+            className="w-full bg-slate-100 py-5 px-7 focus:bg-slate-200 active:ring-5 active:ring-black appearance-none text-2xl"
             onChange={handleInputChange}
             required
           >
@@ -64,17 +71,19 @@ export const SignIn = () => {
             id="documentNumber"
             name="documentNumber"
             placeholder="Ingresa tu cedula"
-            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 hover:ring-4 text-base"
+            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 active:ring-5 active:ring-black text-2xl"
             onChange={handleInputChange}
             pattern="[0-9]*"
             required
           />
         </div>
-        { isErrorForm && <p className="text-red-500 text-sm">Contraseña incorrecta</p> }
+        {isErrorForm && (
+          <p className="text-red-500 text-sm">Contraseña incorrecta</p>
+        )}
         <Button type="submit" isLoading={isLoadingForm}>
           Iniciar sesion
         </Button>
       </form>
     </div>
   );
-}
+};
