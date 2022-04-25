@@ -81,14 +81,14 @@ export const Home = () => {
           </div>
         </li>
       </ul>
-      <div className="grid lg:flex gap-2">
+      {/* <div className="grid lg:flex gap-2">
         <Link to="create-saving" className="w-full">
           <Button icon="ADD">Ingresar aporte</Button>
         </Link>
         <Link to="/" className="w-full">
           <Button icon="DEBT">Solicitar prestamo</Button>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
