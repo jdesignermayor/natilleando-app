@@ -43,17 +43,17 @@ export const landingData = {
             imgURL: 'https://assets.website-files.com/5c8b2e2664f8768dfb1ef7ff/5d2da3052be6ba58cce18efa_shiny-butt.gif',
             title: '¡No más pelado en diciembre!',
             icon: '🔮',
-            description: '<p>La idea fue desarrollada solo con el fin de integrar de alguna manera a las personas de carácter independiente en un ahorro navideño.</p><p>Es administrada por personas responsables.</p>',
+            description: '<p>La idea de la natillera surge con el fin de incentivar un ahorro navideño...</p><p>Es administrada por personas responsables.</p>',
             subItems: []
         },
         {
             id: 1,
             imgURL: 'https://wixtzvsuyxagezjctvdb.supabase.in/storage/v1/object/public/bucket/streamline-icon-leadership-1@400x400.png',
-            title: 'Simples normas',
+            title: ' Normas del natillero',
             icon: '✨',
             description: `<p>
-            Antes de iniciar con las normas es importante dejar claro, este es un fondo de ahorro para personas de confianza, no tiene
-            fines lucrativos para ninguna parte.
+            Antes de iniciar con las normas es importante tener claro; Este es un fondo de ahorro para personas de confianza, no tiene
+            fines lucrativos para ninguna de las partes.
             </p>
             <p class="mt-5">
                 Si desea hacer parte de este mundo de ahorro familiar bienvenido a
@@ -63,19 +63,19 @@ export const landingData = {
             subItems: [
                 {
                     id: 0,
-                    label: 'El periodo de ahorro abarca desde enero a diciembre del año en curso.'
+                    label: 'El periodo de ahorro abarca desde Enero a Diciembre del año en curso.'
                 },
                 {
                     id: 1,
-                    label: 'Si el socio decide retirarse antes de diciembre no recibirá los intereses acumulados hasta la fecha.'
+                    label: 'Si el socio decide retirarse antes de Diciembre no recibirá los intereses acumulados hasta la fecha y le serán descontado del importe ahorrado las muntas o deudas acumuladas en el caso de tener.'
                 },
                 {
                     id: 2,
-                    label: 'Los intereses obtenidos en el periodo de ahorro se repartirá a todos los socios por igual independientes del ahorro invertido por cada socio.'
+                    label: 'Los intereses obtenidos en el periodo de ahorro se repartirá a todos los socios por igual, independientes del ahorro invertido por cada socio.'
                 },
                 {
                     id: 3,
-                    label: 'Los beneficios a repartir se obtendrán a través de: Multas, rifas, eventos, intereses generados por nequi, intereses generados por préstamos y otros extraordinarios.'
+                    label: 'Los beneficios a repartir se obtendrán a través de; multas, rifas, eventos, intereses generados por nequi, intereses generados por préstamos y otros extraordinarios.'
                 }
                 
             ],
@@ -94,11 +94,11 @@ export const landingData = {
                 },
                 {
                     id: 1,
-                    label: 'El ahorro puede ser variable, pero solo será una sola vez al mes.'
+                    label: 'El ahorro puede ser variable, pero solo se realizará un único ingreso al mes.'
                 },
                 {
                     id: 2,
-                    label: 'Para mantener actualizada la información de los socios, se debe diligenciar el formulario de datos que hay en la app.'
+                    label: 'Para mantener actualizada la información de los socios, este debe diligenciar el formulario de datos que hay en la app.'
                 }
             ],
             href: 'requirements'
@@ -112,19 +112,19 @@ export const landingData = {
             subItems: [
                 {
                     id: 0,
-                    label: 'En caso de no dar el ahorro entre los primeros 5 días del mes, se cobrará una suma de $ 500 pesos por cada día de retraso.'
+                    label: 'En caso de no aportar la cuota de ahorro dentro de los cinco primeros días de cada mes, se sancionará con una multa de $500 pesos por cada día de mora.'
                 },
                 {
                     id: 1,
-                    label: 'Para los créditos se cobrará un 5% de interés por mes sobre el valor de la deuda.'
+                    label: 'En caso de no reingresar los créditos solicitados en el plazo acordado esto tendrá una sanción del 5% de interés  sobre el valor solicitado y se aplicara por cada mes solicitado. En caso de ser un crédito de días se le aplicará una sanción de $500 pesos por día de mora desde la fecha de vencimiento.'
                 },
                 {
                     id: 2,
-                    label: 'Las multas como los intereses deben ser pagados al inicio de mes con la cuota del ahorro.'
+                    label: 'Las multas como los intereses deben ser ingresados al inicio de mes con la cuota del ahorro.'
                 },
                 {
                     id: 3,
-                    label: 'Impulsamos la buena gestión del dinero, así que el socio que no pague así sea un mes, automáticamente será expulsado de la natillera.'
+                    label: 'Impulsamos la buena gestión y estimulación del dinero. Si el socio acumula un mes de mora será automáticamente expulsado de la natillera..'
                 }
             ],
             href: 'debts'
@@ -138,19 +138,23 @@ export const landingData = {
             subItems: [
                 {
                     id: 0,
-                    label: 'Los créditos se realiza, sin exceder el monto ahorrado del socio. (revisar antigüedad del socio en la natillera)'
+                    label: 'Los créditos a solicitar, nunca podran exceder el monto ahorrado por el socio.'
                 },
                 {
                     id: 1,
-                    label: 'Solo se otorgan crédito a los socios de la natillera.'
+                    label: 'Solo se concederán créditos a los socios de la natillera.'
                 },
                 {
                     id: 2,
-                    label: 'El crédito solo se realizará sobre el 75% del ahorro aportado por el socio y el otro 25% es para cubrir multas y moras en caso de algún incumplimiento por parte del socio.'
+                    label: 'El crédito a solicitar, solo se realizará sobre el 75% del ahorro aportado por el socio y el otro 25% es para cubrir multas y moras en caso de algún incumplimiento por parte del socio. Este será reintegrado una vez finalizado el periodo del credito solitado.'
                 },
                 {
                     id: 3,
-                    label: 'Los créditos solicitados por la app se gestionará más rápido su desembolso.'
+                    label: 'Los créditos solicitados por la app se gestionará de manera más rápida su desembolso.'
+                },
+                {
+                    id:4,
+                    label: 'Nota: Al socio expulsado por mora se le devolverá el monto ahorrado una vez descontado las sanciones anteriormente mencionadas en este apartado.'
                 }
             ],
             href: 'credits'
@@ -178,9 +182,9 @@ export const landingData = {
             imgURL: 'https://wixtzvsuyxagezjctvdb.supabase.in/storage/v1/object/public/bucket/streamline-icon-becoming-rich-2@400x400.png',
             title: 'Liquidación',
             icon: '🤑',
-            description: `<p>la natillera será liquidada el 1 de diciembre de cada año, y se entregará a cada socio, el ahorro que haya hecho durante los 11 meses,
-            los intereses que correspondan al monto del ahorro.</p>
-            <p class="mt-5">Estas normas podrán cambiar de acuerdo a las nuevas Estipulaciones de <span class="font-bold">Natilleando</span>.</p>
+            description: `<p>La natillera será liquidada el 1 de diciembre de cada año, y se entregará a cada socio, el ahorro que haya hecho durante los 11 meses,
+            los intereses que correspondan al monto del ahorro. Siempre y cuando no tengas deudas pendientes.</p>
+            <p class="mt-5">Estas normas estas sujetas a cambios de acuerdo a las nuevas necesidades de <span class="font-bold">Natilleando</span>.</p>
             `,
             subItems: '',
             href: 'payment'
@@ -189,6 +193,6 @@ export const landingData = {
     subscribeItem: {
         title: '¡No te quedes pelado!',
         icon: '',
-        description: '<p>Únete al equipo y crezcamos juntos.</p>',
+        description: '<p>Únete al equipo y crezcamos juntos ahorrando.</p>',
     },
 }
