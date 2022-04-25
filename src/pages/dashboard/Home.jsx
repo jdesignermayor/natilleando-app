@@ -55,20 +55,19 @@ export const Home = () => {
                 {moneyFormat(paymentsSummary.total)}
               </p>
             )}
-
-            {payments.length <= 0 && (
+            <div className="grid gap-4">
+              <p className="text-2xl">Historial de ahorro 💸</p>
+              {payments.length <= 0 && (
               <Button
                 icon="PAYMENT"
                 isLoading={isLoading}
                 primary={false}
                 onHandleClick={getPayments}
               >
-                Ver movimientos
+                Ver historial
               </Button>
             )}
 
-            <div className="grid gap-4">
-              <p className="text-2xl">Historial de ahorro 💸</p>
               {isLoadingPayments ? (
                 <PaymentsLoader />
               ) : (
