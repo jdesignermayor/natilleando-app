@@ -6,8 +6,8 @@ export const VisitAnnounce = ({
   onClick = () => {},
 }) => {
   return (
-    <div className="grid gap-4 w-full z-50 bg-white">
-      <img src={imgURL} width="350" alt={title} />
+    <div className="grid gap-4 w-full bg-white">
+      <img src={imgURL} width="300" alt={title} />
       <p className="text-5xl font-bold font-recoleta">{title}</p>
       <p>{description}</p>
       <button
