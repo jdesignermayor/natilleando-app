@@ -42,7 +42,7 @@ export const SignIn = () => {
   }, []);
 
   return (
-    <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%]">
+    <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[40%]">
       <form onSubmit={handleSubmit} className="grid gap-5 font-gtultraFine">
         <p className="text-4xl font-gtultraFine font-bold">Iniciar sesión</p>
         <div className="grid gap-2">
@@ -50,7 +50,7 @@ export const SignIn = () => {
           <select
             id="userId"
             name="userId"
-            className="w-full bg-slate-100 py-5 px-7 focus:bg-slate-200 active:ring-5 active:ring-black appearance-none text-2xl"
+            className="w-full bg-slate-100 py-3 px-5 focus:bg-slate-200 active:ring-5 border-2 rounded-none appearance-none border-transparent active:border-black  appearance-none text-2xl"
             onChange={handleInputChange}
             required
           >
