@@ -50,7 +50,9 @@ export const SignIn = () => {
           <select
             id="userId"
             name="userId"
-            className="w-full bg-slate-100 py-3 px-5 focus:bg-slate-200 border-2 rounded-none appearance-none border-transparent ring-offset-0 focus:border-black text-2xl"
+            aria-label="Selecciona el socio"
+            alt="Selecciona el socio"
+            className="appearance-none drop-shadow-none w-full outline-none rounded-none py-3 px-4 bg-slate-100 border-2 border-transparent focus:border-black"
             onChange={handleInputChange}
             required
           >
@@ -67,11 +69,13 @@ export const SignIn = () => {
             Ingresa la clave (número de cédula)
           </label>
           <input
-            type="number"
+            type="password"
             id="documentNumber"
             name="documentNumber"
+            aria-label="Ingresa tu cedula"
+            alt="Ingresa tu cedula"
             placeholder="Ingresa tu cedula"
-            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 active:ring-5 active:ring-black text-2xl"
+            className="appearance-none drop-shadow-none w-full outline-none rounded-none py-3 px-4 bg-slate-100 border-2 border-transparent focus:border-black"
             onChange={handleInputChange}
             pattern="[0-9]*"
             required
@@ -81,7 +85,7 @@ export const SignIn = () => {
           <p className="text-red-500 text-sm">Contraseña incorrecta</p>
         )}
         <Button type="submit" isLoading={isLoadingForm}>
-          Iniciar sesion
+          Iniciar sesión
         </Button>
       </form>
     </div>
