@@ -8,7 +8,10 @@ export function useSimpleForm() {
   const handleInputChange = (event) => {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [event.target.name]:
+        event.target.type != "file"
+          ? event.target.value
+          : event.target.files[0],
     });
   };
 
