@@ -50,7 +50,7 @@ export const SignIn = () => {
           <select
             id="userId"
             name="userId"
-            className="w-full bg-slate-100 py-3 px-5 focus:bg-slate-200 active:ring-5 border-2 rounded-none appearance-none border-transparent active:border-black  appearance-none text-2xl"
+            className="w-full bg-slate-100 py-3 px-5 focus:bg-slate-200 border-2 rounded-none appearance-none border-transparent focus:border-black text-2xl"
             onChange={handleInputChange}
             required
           >
