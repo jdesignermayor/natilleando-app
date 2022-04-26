@@ -1,15 +1,26 @@
 import { useState } from "react";
-
 import { useSimpleForm } from "../../hooks/useSimpleForm";
-import { Link } from "react-router-dom";
+import { useSupabase } from "../../hooks/useSupabase";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 import ArrowLeft from "../../assets/icons/arrow-left.svg";
+import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { VisitAnnounce } from "../../components/VisitAnnounce";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CreateSaving = () => {
   const [isOpenAnnounce, setIsOpenAnnounce] = useState(true);
+  const navigate = useNavigate();
+
+  const {
+    state: { user },
+  } = useAuth();
+
+  const { id } = user;
 
   const {
     formData,
@@ -20,15 +31,36 @@ export const CreateSaving = () => {
     setIsErrorForm,
   } = useSimpleForm();
 
+  const { uploadImage, createPayment } = useSupabase();
+
   const onHideComponent = () => {
     setIsOpenAnnounce(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setIsLoadingForm(true);
+    try {
+      const { data: uploadData } = await uploadImage(formData?.voucherPhoto);
+
+      const newObject = {
+        user_id: id,
+        amount: formData?.amount,
+        voucherPhotoURL: uploadData?.publicURL,
+        payment_date: formData?.currentDate,
+        payment_status: 'pending',
+        payment_type: 2,
+      };
+
+      await createPayment(newObject);
+      toast.success('Pago creado con éxito');
+      navigate("/dashboard");
+
+    } catch (error) {
+    } finally {
+      setIsLoadingForm(false);
+    }
   };
-  
 
   return (
     <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 font-gtultraFine pt-20">
@@ -45,7 +77,7 @@ export const CreateSaving = () => {
             imgURL="https://wixtzvsuyxagezjctvdb.supabase.co/storage/v1/object/public/bucket/streamline-icon-startup-3@400x400.PNG"
             title="Ahorrar es importante"
             description="Cada que haces un aporte crece tu hábito al ahorro y aportas a que el
-          proyecto siga avanzando ¡MUCHAS GRACIAS!"
+      proyecto siga avanzando ¡MUCHAS GRACIAS!"
             buttonLabel="Ingresar abono"
             localStorageId="CREATE_SAVING"
             onClick={onHideComponent}
@@ -98,7 +130,9 @@ export const CreateSaving = () => {
                 Selecciona el medio de pago
               </label>
             </div>
-            <Button type="submit">Aceptar</Button>
+            <Button type="submit" isLoading={isLoadingForm}>
+              Aceptar
+            </Button>
           </form>
         )}
       </div>
