@@ -31,7 +31,7 @@ export const TransactionsHistoryTable = ({ labelList, itemsList }) => {
                   {payment_status === "verifed" ? (
                     <Badge color="success" name="Verificado" />
                   ) : (
-                    <Badge color="danger" name="🖐️ Sin verificar" />
+                    <Badge color="danger" name="Sin verificar" />
                   )}
                 </th>
                 <th
