@@ -71,19 +71,19 @@ export function useSupabase() {
       const filePath = `public/${fileName}`;
       const fileExtString = fileExt.toLowerCase();
 
-      alert(fileExtString);
+      // alert(fileExtString);
 
-      if (
-        fileExtString !== "png" ||
-        fileExtString !== "jpg" ||
-        fileExtString !== "jpeg"
-      ) {
-        console.log(
-          "You must select an image in jpg, jpeg or png format",
-          fileExt
-        );
-        throw new Error("You must select an image in jpg, jpeg or png format.");
-      }
+      // if (
+      //   fileExtString !== "png" ||
+      //   fileExtString !== "jpg" ||
+      //   fileExtString !== "jpeg"
+      // ) {
+      //   console.log(
+      //     "You must select an image in jpg, jpeg or png format",
+      //     fileExt
+      //   );
+      //   throw new Error("You must select an image in jpg, jpeg or png format.");
+      // }
 
       await supabase.storage.from(BUCKET_FOLDER).upload(filePath, file);
 
