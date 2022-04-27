@@ -80,7 +80,7 @@ export const CreateSaving = () => {
             title="Ahorrar es importante"
             description="Cada que haces un aporte crece tu hábito al ahorro y aportas a que el
       proyecto siga avanzando ¡MUCHAS GRACIAS!"
-            buttonLabel="Ingresar abono"
+            buttonLabel="Continuar"
             localStorageId="CREATE_SAVING"
             onClick={onHideComponent}
           />
