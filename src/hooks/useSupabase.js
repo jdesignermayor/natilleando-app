@@ -73,7 +73,7 @@ export function useSupabase() {
 
       alert(fileExtString);
 
-      if (fileExtString !== "png" && "jpg" && "jpeg") {
+      if (fileExtString !== "png" || "jpg" || "jpeg") {
         console.log(
           "You must select an image in jpg, jpeg or png format",
           fileExt
