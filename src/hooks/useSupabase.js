@@ -38,32 +38,27 @@ export function useSupabase() {
   };
 
   const createPayment = async (payment) => {
-    console.log(payment);
+    setIsLoadingPayments(true);
+    try {
+      const { data, error, status } = await supabase
+        .from("payments_history")
+        .insert(payment);
 
-     setIsLoadingPayments(true);
-     try {
-       const { data, error, status } = await supabase
-         .from("payments_history")
-         .insert(payment);
+      if (error && status !== 406) {
+        throw error;
+      }
 
-       if (error && status !== 406) {
-         throw error;
-       }
-
-       Promise.resolve(data);
-       
-     } catch (error) {
-       console.error(error);
-       romise.resolve(error);
-       
-     } finally {
-       setIsLoadingPayments(false);
-     }
-  }
+      Promise.resolve(data);
+    } catch (error) {
+      console.error(error);
+      romise.resolve(error);
+    } finally {
+      setIsLoadingPayments(false);
+    }
+  };
 
   const uploadImage = async (fileProp) => {
     setIsLoading(true);
-
     try {
 
       if (!fileProp) {
@@ -74,6 +69,15 @@ export function useSupabase() {
       const fileExt = file.name.split(".").pop();
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `public/${fileName}`;
+      const fileExtString = fileExt.toLowerCase();
+
+      if (fileExtString !== "png" && "jpg" && "jpeg") {
+        console.log(
+          "You must select an image in jpg, jpeg or png format",
+          fileExt
+        );
+        throw new Error("You must select an image in jpg, jpeg or png format.");
+      }
 
       await supabase.storage.from(BUCKET_FOLDER).upload(filePath, file);
 
@@ -89,7 +93,6 @@ export function useSupabase() {
       setIsLoading(true);
     }
   }
-
 
   const validateLogin = async ({ id, password }) => {
     try {
