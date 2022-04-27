@@ -71,6 +71,8 @@ export function useSupabase() {
       const filePath = `public/${fileName}`;
       const fileExtString = fileExt.toLowerCase();
 
+      alert(fileExtString);
+
       if (fileExtString !== "png" && "jpg" && "jpeg") {
         console.log(
           "You must select an image in jpg, jpeg or png format",
