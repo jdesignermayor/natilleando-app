@@ -69,7 +69,7 @@ export function useSupabase() {
       const fileExt = file.name.split(".").pop();
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `public/${fileName}`;
-      const fileExtString = fileExt.toLowerCase();
+      // const fileExtString = fileExt.toLowerCase();
 
       // alert(fileExtString);
 
