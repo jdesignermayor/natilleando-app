@@ -48,8 +48,8 @@ export const CreateSaving = () => {
         amount: formData?.amount,
         voucherPhotoURL: uploadData?.publicURL,
         payment_date: formData?.currentDate,
-        payment_status: 'pending',
-        payment_type: 2,
+        payment_type: formData?.paymentType,
+        payment_status: "pending",
       };
 
       await createPayment(newObject);
@@ -57,6 +57,8 @@ export const CreateSaving = () => {
       navigate("/dashboard");
 
     } catch (error) {
+      setIsErrorForm(true);
+      toast.error('Error al cargar el pago, intente nuevamente.');
     } finally {
       setIsLoadingForm(false);
     }
@@ -113,7 +115,10 @@ export const CreateSaving = () => {
               />
             </div>
             <div className="grid gap-2">
-              <label htmlFor="voucherPhoto">Selecciona el comprobante</label>
+              <label htmlFor="voucherPhoto">
+                Selecciona el comprobante (Solo se permiten imagenes en formato
+                PNG, JPG, JPEG)
+              </label>
               <input
                 type="file"
                 id="voucherPhoto"
@@ -128,6 +133,27 @@ export const CreateSaving = () => {
             <div className="grid gap-2">
               <label htmlFor="documentNumber">
                 Selecciona el medio de pago
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="paymentType"
+                  className="form-radio h-5 w-5"
+                  value="2"
+                  onChange={handleInputChange}
+                  required
+                />
+                Nequi o Bancolombia
+              </label>
+              <label className="flex items-center gap-2 form-check">
+                <input
+                  type="radio"
+                  name="paymentType"
+                  className="form-radio h-5 w-5"
+                  value="1"
+                  onChange={handleInputChange}
+                />
+                Efectivo
               </label>
             </div>
             <Button type="submit" isLoading={isLoadingForm}>

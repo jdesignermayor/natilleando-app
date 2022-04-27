@@ -21,6 +21,7 @@ export const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoadingForm(true);
+
     try {
       const dataUser = await validateLogin({
         id: formData?.userId,
@@ -28,7 +29,6 @@ export const SignIn = () => {
       });
 
       onLogIn(dataUser);
-
       setIsLoadingForm(false);
       setIsErrorForm(false);
     } catch (error) {
