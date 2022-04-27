@@ -22,14 +22,14 @@ export const CreateSaving = () => {
         className="font-black text-2xl flex gap-2 cursor-pointer"
       >
         <img src={ArrowLeft} width="30" alt="Come back" />
-        Ingresar aporte
+        Ingresar ahorro
       </Link>
       <div className="grid gap-6 pb-20">
         {isOpenAnnounce && (
           <VisitAnnounce
             imgURL="https://wixtzvsuyxagezjctvdb.supabase.co/storage/v1/object/public/bucket/streamline-icon-startup-3@400x400.PNG"
             title="Ahorrar es importante"
-            description="Cada que haces un aporte crece tu hábito al ahorro y aportas a que el
+            description="Cada que haces un ahorro crece tu hábito al ahorro y aportas a que el
       proyecto siga avanzando ¡MUCHAS GRACIAS!"
             buttonLabel="Continuar"
             localStorageId="CREATE_SAVING"
@@ -40,7 +40,7 @@ export const CreateSaving = () => {
         {!isOpenAnnounce && (
           <form className="grid gap-4" onSubmit={handleSubmit}>
             <div className="grid gap-2">
-              <label htmlFor="amount">Ingresar valor de aporte</label>
+              <label htmlFor="amount">Ingresar valor de ahorro</label>
               <input
                 type="number"
                 id="amount"

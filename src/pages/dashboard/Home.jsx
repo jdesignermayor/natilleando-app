@@ -84,7 +84,7 @@ export const Home = () => {
       </ul>
       <div className="grid lg:flex gap-2">
         <Link to="create-saving" className="w-full">
-          <Button icon="ADD">Ingresar aporte</Button>
+          <Button icon="ADD">Ingresar ahorro</Button>
         </Link>
         {/* <Link to="/" className="w-full">
           <Button icon="DEBT">Solicitar prestamo</Button>
