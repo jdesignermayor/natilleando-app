@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 import { Button } from "../../components/Button";
 import { TransactionsHistoryTable } from "../../components/TransactionsHistoryTable";
 import { PaymentsLoader } from "../../components/PaymentsLoader";
-import { PaymentsSummary } from "../../components/PaymentsSummary";
+import { PaymentsSummaryLoader } from "../../components/PaymentsSummaryLoader";
 
 export const Home = () => {
   const {
@@ -39,7 +39,7 @@ export const Home = () => {
     <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 font-gtultraFine pt-20">
       <h1 className="text-xl">
         Hola{" "}
-        <span className="capitalize">
+        <span className="capitalize font-bold font-gtultraFine">
           {name} {surname} 👋
         </span>
       </h1>
@@ -47,26 +47,28 @@ export const Home = () => {
       <ul className="flex flex-col gap-4">
         <li>
           <div className="flex flex-col gap-4">
-            <p className="text-2xl">Total ahorrado 💰</p>
-            {isLoadingSummary ? (
-              <PaymentsSummary />
-            ) : (
-              <p className="text-4xl font-bold ">
-                {moneyFormat(paymentsSummary.total)}
-              </p>
-            )}
+            <div>
+              <p className="text-2xl">Total ahorrado 💰</p>
+              {isLoadingSummary ? (
+                <PaymentsSummaryLoader />
+              ) : (
+                <p className="text-4xl font-bold ">
+                  {moneyFormat(paymentsSummary.total)}
+                </p>
+              )}
+            </div>
             <div className="grid gap-4">
               <p className="text-2xl">Historial de ahorro 💸</p>
               {payments.length <= 0 && (
-              <Button
-                icon="PAYMENT"
-                isLoading={isLoading}
-                primary={false}
-                onHandleClick={getPayments}
-              >
-                Ver historial
-              </Button>
-            )}
+                <Button
+                  icon="PAYMENT"
+                  isLoading={isLoading}
+                  primary={false}
+                  onHandleClick={getPayments}
+                >
+                  Ver historial
+                </Button>
+              )}
 
               {isLoadingPayments ? (
                 <PaymentsLoader />
@@ -80,14 +82,14 @@ export const Home = () => {
           </div>
         </li>
       </ul>
-      {/* <div className="grid lg:flex gap-2">
+      <div className="grid lg:flex gap-2">
         <Link to="create-saving" className="w-full">
-          <Button icon="ADD">Ingresar aporte</Button>
+          <Button icon="ADD">Ingresar ahorro</Button>
         </Link>
-        <Link to="/" className="w-full">
+        {/* <Link to="/" className="w-full">
           <Button icon="DEBT">Solicitar prestamo</Button>
-        </Link>
-      </div> */}
+        </Link> */}
+      </div>
     </div>
   );
 };

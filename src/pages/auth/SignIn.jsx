@@ -21,6 +21,7 @@ export const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoadingForm(true);
+
     try {
       const dataUser = await validateLogin({
         id: formData?.userId,
@@ -28,7 +29,6 @@ export const SignIn = () => {
       });
 
       onLogIn(dataUser);
-
       setIsLoadingForm(false);
       setIsErrorForm(false);
     } catch (error) {
@@ -42,7 +42,7 @@ export const SignIn = () => {
   }, []);
 
   return (
-    <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%]">
+    <div className="pt-40 px-5 md:px-64 p-3 lg:px-96 2xl:px-[40%]">
       <form onSubmit={handleSubmit} className="grid gap-5 font-gtultraFine">
         <p className="text-4xl font-gtultraFine font-bold">Iniciar sesión</p>
         <div className="grid gap-2">
@@ -50,7 +50,9 @@ export const SignIn = () => {
           <select
             id="userId"
             name="userId"
-            className="w-full bg-slate-100 py-5 px-7 focus:bg-slate-200 active:ring-5 active:ring-black appearance-none text-2xl"
+            aria-label="Selecciona el socio"
+            alt="Selecciona el socio"
+            className="appearance-none drop-shadow-none w-full outline-none rounded-none py-3 px-4 bg-slate-100 border-2 border-transparent focus:border-black"
             onChange={handleInputChange}
             required
           >
@@ -70,8 +72,10 @@ export const SignIn = () => {
             type="number"
             id="documentNumber"
             name="documentNumber"
+            aria-label="Ingresa tu cedula"
+            alt="Ingresa tu cedula"
             placeholder="Ingresa tu cedula"
-            className="w-full bg-slate-100 py-4 px-7 focus:bg-slate-200 active:ring-5 active:ring-black text-2xl"
+            className="appearance-none drop-shadow-none w-full outline-none rounded-none py-3 px-4 bg-slate-100 border-2 border-transparent focus:border-black"
             onChange={handleInputChange}
             pattern="[0-9]*"
             required
@@ -81,7 +85,7 @@ export const SignIn = () => {
           <p className="text-red-500 text-sm">Contraseña incorrecta</p>
         )}
         <Button type="submit" isLoading={isLoadingForm}>
-          Iniciar sesion
+          Iniciar sesión
         </Button>
       </form>
     </div>

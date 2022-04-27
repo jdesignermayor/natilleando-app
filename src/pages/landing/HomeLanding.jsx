@@ -5,8 +5,6 @@ import { TopicItemContainer } from '../../components/TopicItemContainer';
 import { LandinngFooter } from '../../components/LandingFooter';
 import { LandingSubscribeItem } from '../../components/LandingSubscribeItem';
 
-
-
 export const HomeLanding = () => {
   return (
     <>

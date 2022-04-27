@@ -13,7 +13,7 @@ export const Navbar = () => {
   const { user } = state;
 
   return (
-    <div className="flex items-center justify-between px-5 lg:px-40 2xl:px-[30%] h-16 p-3 gap-9 fixed w-full bg-white backdrop-filter backdrop-blur-md bg-opacity-70 border-b border-black">
+    <div className="flex items-center justify-between px-5 lg:px-40 2xl:px-[30%] h-16 p-3 gap-9 fixed w-full z-50 bg-white backdrop-filter backdrop-blur-md bg-opacity-70 border-b border-black">
       <Link
         to="/"
         className="flex items-center font-gtultra font-bold text-lg"

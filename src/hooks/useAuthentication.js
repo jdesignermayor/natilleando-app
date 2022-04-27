@@ -5,12 +5,12 @@ export function useAuthentication(){
     const { dispatch } = useAuth();
     const navigate = useNavigate();
 
-    function onLogOut(){
-        dispatch({ type: "loggedOut" });
-        navigate("/login");
-    }
+    const onLogOut = () => {
+      dispatch({ type: "loggedOut" });
+      navigate("/login");
+    };
 
-    function onLogIn(dataUser){
+    const onLogIn = (dataUser) => {
         dispatch({ type: "loggedIn", user: { ...dataUser } });
         navigate("/dashboard");
     }

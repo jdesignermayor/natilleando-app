@@ -28,15 +28,15 @@ export const Button = ({
   isLoading = false,
   icon = null,
   primary = true,
-  onHandleClick = () => { console.log('clicked')},
+  onHandleClick = () => {},
 }) => {
   return (
     <button
       type={type}
       disabled={isLoading}
       onClick={onHandleClick}
-      className={`flex gap-2 items-center  justify-center ${
-        primary ? "bg-black text-white" : " text-black border border-black"
+      className={`flex gap-2 items-center justify-center ${
+        primary ? "bg-black text-white" : " text-black border-2 border-black"
       }  transition py-3 px-7 w-full hover:opacity-60 h-12 text-base font-gtultraFine ${
         isLoading && "bg-gray-300"
       }`}
