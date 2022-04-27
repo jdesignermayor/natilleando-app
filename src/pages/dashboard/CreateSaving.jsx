@@ -1,68 +1,19 @@
-import { useState } from "react";
-import { useSimpleForm } from "../../hooks/useSimpleForm";
-import { useSupabase } from "../../hooks/useSupabase";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useCreateSaving } from "../../hooks/useCreateSaving";
 
 import ArrowLeft from "../../assets/icons/arrow-left.svg";
-import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
+import { Link } from "react-router-dom";
 import { VisitAnnounce } from "../../components/VisitAnnounce";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 export const CreateSaving = () => {
-  const [isOpenAnnounce, setIsOpenAnnounce] = useState(true);
-  const navigate = useNavigate();
-
   const {
-    state: { user },
-  } = useAuth();
-
-  const { id } = user;
-
-  const {
-    formData,
-    handleInputChange,
+    isOpenAnnounce,
     isLoadingForm,
     isErrorForm,
-    setIsLoadingForm,
-    setIsErrorForm,
-  } = useSimpleForm();
-
-  const { uploadImage, createPayment } = useSupabase();
-
-  const onHideComponent = () => {
-    setIsOpenAnnounce(false);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoadingForm(true);
-    try {
-      const { data: uploadData } = await uploadImage(formData?.voucherPhoto);
-
-      const newObject = {
-        user_id: id,
-        amount: formData?.amount,
-        voucherPhotoURL: uploadData?.publicURL,
-        payment_date: formData?.currentDate,
-        payment_type: formData?.paymentType,
-        payment_status: "pending",
-      };
-
-      await createPayment(newObject);
-      toast.success('Pago creado con éxito');
-      navigate("/dashboard");
-
-    } catch (error) {
-      setIsErrorForm(true);
-      toast.error('Error al cargar el pago, intente nuevamente.');
-    } finally {
-      setIsLoadingForm(false);
-    }
-  };
+    handleHideComponent,
+    handleSubmit,
+    handleInputChange,
+  } = useCreateSaving();
 
   return (
     <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 font-gtultraFine pt-20">
@@ -82,7 +33,7 @@ export const CreateSaving = () => {
       proyecto siga avanzando ¡MUCHAS GRACIAS!"
             buttonLabel="Continuar"
             localStorageId="CREATE_SAVING"
-            onClick={onHideComponent}
+            onClick={handleHideComponent}
           />
         )}
 
@@ -156,6 +107,11 @@ export const CreateSaving = () => {
                 Efectivo
               </label>
             </div>
+            {isErrorForm && (
+              <p className="text-red-500 text-sm">
+                Ocurrió algún error, por favor válida los datos.
+              </p>
+            )}
             <Button type="submit" isLoading={isLoadingForm}>
               Aceptar
             </Button>
