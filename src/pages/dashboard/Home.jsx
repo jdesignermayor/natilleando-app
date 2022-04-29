@@ -36,10 +36,10 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 font-gtultraFine pt-20">
+    <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 pt-20">
       <h1 className="text-xl">
         Hola{" "}
-        <span className="capitalize font-bold font-gtultraFine">
+        <span className="capitalize font-bold">
           {name} {surname} 👋
         </span>
       </h1>
