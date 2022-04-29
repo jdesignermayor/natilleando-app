@@ -7,6 +7,7 @@ import { HomeLanding } from "./pages/landing/HomeLanding";
 import { Navbar } from "./components/Navbar";
 import { RegisterLanding } from "./pages/landing/RegisterLanding";
 import { SignIn } from "./pages/auth/SignIn";
+import { CreateCredit } from "./pages/dashboard/CreateCredit";
 
 const ProtectedRoute = ({ children }) => {
   const { state } = useAuth();
@@ -41,6 +42,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <CreateSaving />
+              </ProtectedRoute>
+            }
+          />
+        
+          <Route
+            path="dashboard/create-credit"
+            element={
+              <ProtectedRoute>
+                <CreateCredit />
               </ProtectedRoute>
             }
           />

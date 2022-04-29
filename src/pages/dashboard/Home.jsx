@@ -86,9 +86,9 @@ export const Home = () => {
         <Link to="create-saving" className="w-full">
           <Button icon="ADD">Ingresar ahorro</Button>
         </Link>
-        {/* <Link to="/" className="w-full">
+        <Link to="create-credit" className="w-full">
           <Button icon="DEBT">Solicitar prestamo</Button>
-        </Link> */}
+        </Link>
       </div>
     </div>
   );

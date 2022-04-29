@@ -29,8 +29,7 @@ export const CreateSaving = () => {
           <VisitAnnounce
             imgURL="https://wixtzvsuyxagezjctvdb.supabase.co/storage/v1/object/public/bucket/streamline-icon-startup-3@400x400.PNG"
             title="Ahorrar es importante"
-            description="Cada que haces un ahorro crece tu hábito al ahorro y aportas a que el
-      proyecto siga avanzando ¡MUCHAS GRACIAS!"
+            description="Cada vez que realizas un ahorro, crece tu hábito al ahorro y aportas que el proyecto siga avanzando ¡MUCHAS GRACIAS y ANIMO SIGUE ASÍ!"
             buttonLabel="Continuar"
             localStorageId="CREATE_SAVING"
             onClick={handleHideComponent}
