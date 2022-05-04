@@ -36,7 +36,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 pt-20  font-gtultraFine">
+    <main className="px-2 lg:px-40 2xl:px-[30%] grid gap-5 pt-20  font-gtultraFine">
       <h1 className="text-xl">
         Hola{" "}
         <span className="capitalize font-bold">
@@ -90,6 +90,6 @@ export const Home = () => {
           <Button icon="DEBT">Solicitar crédito</Button>
         </Link> */}
       </div>
-    </div>
+    </main>
   );
 };

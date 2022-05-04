@@ -3,7 +3,7 @@ import Photo from "../assets/images/foto.jpg";
 
 export const LandinngFooter = () => {
   return (
-    <div className="flex bottom-0 w-full bg-black text-white gap-4 items-center px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%] font-gtultraFine">
+    <footer className="flex bottom-0 w-full bg-black text-white gap-4 items-center px-5 md:px-64 p-3 lg:px-96 2xl:px-[30%] font-gtultraFine">
       <div>
         <img
           src={Photo}
@@ -24,6 +24,6 @@ export const LandinngFooter = () => {
           familiares de confianza o amigos cercanos 💕.
         </p>
       </div>
-    </div>
+    </footer>
   );
 };

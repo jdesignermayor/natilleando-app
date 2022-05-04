@@ -13,7 +13,7 @@ export const Navbar = () => {
   const { user } = state;
 
   return (
-    <div className="flex items-center justify-between px-5 lg:px-40 2xl:px-[30%] h-16 p-3 gap-9 fixed w-full z-50 bg-white backdrop-filter backdrop-blur-md bg-opacity-70 border-b border-black">
+    <nav className="flex items-center justify-between p-1 md:px-2 lg:px-40 2xl:px-[30%] h-16 gap-9 fixed w-full z-50 bg-white backdrop-filter backdrop-blur-md bg-opacity-70 border-b border-black">
       <Link
         to="/"
         className="flex items-center font-gtultra font-bold text-lg"
@@ -25,7 +25,7 @@ export const Navbar = () => {
         {user ? (
           <button
             onClick={onLogOut}
-            className="flex items-center justify-between gap-2 text-black transition py-2 px-5 w-full"
+            className="flex items-center justify-between gap-2 text-black transition py-2 px-1 w-full"
           >
             <img src={IconSignOut} width="30" alt="Salir" />
             Salir
@@ -39,7 +39,7 @@ export const Navbar = () => {
           </Link>
         )}
       </div>
-    </div>
+    </nav>
   );
 }
     
