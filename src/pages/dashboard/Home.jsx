@@ -36,7 +36,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 pt-20">
+    <div className="px-5 lg:px-40 2xl:px-[30%] grid gap-5 pt-20  font-gtultraFine">
       <h1 className="text-xl">
         Hola{" "}
         <span className="capitalize font-bold">
@@ -52,8 +52,8 @@ export const Home = () => {
               {isLoadingSummary ? (
                 <PaymentsSummaryLoader />
               ) : (
-                <p className="text-4xl font-bold ">
-                  {moneyFormat(paymentsSummary.total)}
+                <p className="text-4xl font-bold font-mono ">
+                  {moneyFormat(paymentsSummary?.total)}
                 </p>
               )}
             </div>
@@ -86,9 +86,9 @@ export const Home = () => {
         <Link to="create-saving" className="w-full">
           <Button icon="ADD">Ingresar ahorro</Button>
         </Link>
-        <Link to="create-credit" className="w-full">
-          <Button icon="DEBT">Solicitar prestamo</Button>
-        </Link>
+        {/* <Link to="create-credit" className="w-full">
+          <Button icon="DEBT">Solicitar crédito</Button>
+        </Link> */}
       </div>
     </div>
   );
