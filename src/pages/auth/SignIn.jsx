@@ -69,7 +69,7 @@ export const SignIn = () => {
             Ingresa la clave (número de cédula)
           </label>
           <input
-            type="number"
+            type="password"
             id="documentNumber"
             name="documentNumber"
             aria-label="Ingresa tu cedula"
