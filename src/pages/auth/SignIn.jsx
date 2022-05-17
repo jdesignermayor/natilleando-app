@@ -29,11 +29,12 @@ export const SignIn = () => {
       });
 
       onLogIn(dataUser);
-      setIsLoadingForm(false);
       setIsErrorForm(false);
+      
     } catch (error) {
-      setIsLoadingForm(false);
       setIsErrorForm(true);
+    } finally {
+      setIsLoadingForm(false);
     }
   };
 

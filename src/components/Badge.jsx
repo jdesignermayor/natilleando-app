@@ -24,7 +24,7 @@ export const Badge = ({ color, name }) => {
 
   return (
     <div
-      className={`flex justify-center items-center rounded-full ${classNameDefault.badgeClass}`}
+      className={`flex justify-center w-24 items-center rounded-full ${classNameDefault.badgeClass}`}
     >
       <p className={classNameDefault.labelClass}>{name}</p>
     </div>
