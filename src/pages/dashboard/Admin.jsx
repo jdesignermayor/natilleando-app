@@ -6,9 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useSupabase } from "../../hooks/useSupabase";
 
 import { TransactionsHistoryTable } from "../../components/TransactionsHistoryTable";
-import { PaymentsSummaryLoader } from "../../components/PaymentsSummaryLoader";
-
-import { moneyFormat } from "../../utils/formats";
+import { Cardvalue } from "../../components/Cardvalue";
 
 export const Admin = () => {
   const {
@@ -23,7 +21,6 @@ export const Admin = () => {
     lastPayments,
     allSummary,
     paymentsSummary,
-    isLoadingSummary,
   } = useSupabase();
 
   useEffect(() => {
@@ -43,38 +40,19 @@ export const Admin = () => {
 
       <div className="flex flex-col gap-2">
         <div className="grid md:flex gap-3">
-          <div className="grid items-center border p-7 w-full">
-            <p className="text-2xl">💰Total ahorro verificado</p>
-            {allSummary?.total_verified ? (
-              <p className="text-4xl font-bold font-mono">
-                {moneyFormat(allSummary?.total_verified)}
-              </p>
-            ) : (
-              <PaymentsSummaryLoader />
-            )}
-          </div>
-          <div className="grid items-center border p-7 w-full">
-            <p className="text-2xl">Total ahorro sin verificar</p>
-            {allSummary?.total_unverified ? (
-              <p className="text-4xl font-bold font-mono">
-                {moneyFormat(allSummary?.total_unverified)}
-              </p>
-            ) : (
-              <p className="text-4xl font-bold font-mono ">0</p>
-            )}
-          </div>
+          <Cardvalue
+            title="💰Total ahorro verificado"
+            value={allSummary?.total_verified}
+          />
+          <Cardvalue
+            title="😒Total ahorro sin verificar"
+            value={allSummary?.total_unverified}
+          />
         </div>
-
-        <div className="border p-7">
-          <p className="text-2xl">🏦Total ahorro personal</p>
-          {isLoadingSummary ? (
-            <PaymentsSummaryLoader />
-          ) : (
-            <p className="text-4xl font-bold font-mono ">
-              {moneyFormat(paymentsSummary?.total)}
-            </p>
-          )}
-        </div>
+        <Cardvalue
+          title="🏦Total ahorro personal"
+          value={paymentsSummary?.total}
+        />
         <Link to="create-saving" className="w-full">
           <Button icon="ADD">Ingresar ahorro</Button>
         </Link>
