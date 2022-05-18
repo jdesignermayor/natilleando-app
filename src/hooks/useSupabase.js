@@ -135,11 +135,11 @@ export function useSupabase() {
 
       await supabase.storage.from(BUCKET_FOLDER).upload(filePath, file);
 
-      const getPublicUrlResult = supabase.storage
+      const { signedURL, error } = await supabase.storage
         .from(BUCKET_FOLDER)
-        .getPublicUrl(filePath);
+        .createSignedUrl(filePath, 60);
 
-      return Promise.resolve(getPublicUrlResult);
+      return Promise.resolve(signedURL);
     } catch (error) {
       return Promise.reject(error);
     } finally {

@@ -35,12 +35,12 @@ export function useCreateSaving() {
     e.preventDefault();
     setIsLoadingForm(true);
     try {
-      const { data: uploadData } = await uploadImage(formData?.voucherPhoto);
+      const publicURL = await uploadImage(formData?.voucherPhoto);
 
       const newObject = {
         user_id: id,
         amount: formData?.amount,
-        voucherPhotoURL: uploadData?.publicURL,
+        voucherPhotoURL: publicURL,
         payment_date: formData?.currentDate,
         payment_type: formData?.paymentType,
         payment_status: "pending",
@@ -48,7 +48,7 @@ export function useCreateSaving() {
 
       await createPayment(newObject);
       toast.success("Pago creado con éxito");
-      navigate("/dashboard");
+      navigate(-1);
     } catch (error) {
       setIsErrorForm(true);
       toast.error("Error al cargar el pago, intente nuevamente.");
