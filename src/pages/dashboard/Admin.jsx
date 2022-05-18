@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { Button } from "../../components/Button";
+
 import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useSupabase } from "../../hooks/useSupabase";
@@ -40,37 +43,41 @@ export const Admin = () => {
 
       <div className="flex flex-col gap-2">
         <div className="grid md:flex gap-3">
-          <div className=" bg-slate-100 p-7 w-full">
-            <p className="text-3xl">💰Total ahorro verificado</p>
+          <div className="grid items-center border p-7 w-full">
+            <p className="text-2xl">💰Total ahorro verificado</p>
             {allSummary?.total_verified ? (
-              <p className="text-5xl font-bold font-mono ">
+              <p className="text-4xl font-bold font-mono">
                 {moneyFormat(allSummary?.total_verified)}
               </p>
             ) : (
               <PaymentsSummaryLoader />
             )}
           </div>
-          <div className=" bg-slate-100 p-7 w-full">
-            <p className="text-3xl">😴Total ahorro no verificado </p>
+          <div className="grid items-center border p-7 w-full">
+            <p className="text-2xl">Total ahorro sin verificar</p>
             {allSummary?.total_unverified ? (
-              <p className="text-5xl font-bold font-mono ">
+              <p className="text-4xl font-bold font-mono">
                 {moneyFormat(allSummary?.total_unverified)}
               </p>
             ) : (
-              <p className="text-5xl font-bold font-mono ">0</p>
+              <p className="text-4xl font-bold font-mono ">0</p>
             )}
           </div>
         </div>
-        <div className=" bg-slate-100 p-7">
-            <p className="text-2xl">🏦Total ahorro personal</p>
-            {isLoadingSummary ? (
-              <PaymentsSummaryLoader />
-            ) : (
-              <p className="text-4xl font-bold font-mono ">
-                {moneyFormat(paymentsSummary?.total)}
-              </p>
-            )}
-          </div>
+
+        <div className="border p-7">
+          <p className="text-2xl">🏦Total ahorro personal</p>
+          {isLoadingSummary ? (
+            <PaymentsSummaryLoader />
+          ) : (
+            <p className="text-4xl font-bold font-mono ">
+              {moneyFormat(paymentsSummary?.total)}
+            </p>
+          )}
+        </div>
+        <Link to="create-saving" className="w-full">
+          <Button icon="ADD">Ingresar ahorro</Button>
+        </Link>
       </div>
       <TransactionsHistoryTable
         title="Historial de pagos"
