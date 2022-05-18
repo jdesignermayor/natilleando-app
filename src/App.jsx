@@ -37,6 +37,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="admin/create-saving"
+            element={
+              <ProtectedRoute>
+                <CreateSaving />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="dashboard"
             element={
@@ -54,7 +64,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-        
+
           <Route
             path="dashboard/create-credit"
             element={
