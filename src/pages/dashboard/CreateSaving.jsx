@@ -76,8 +76,6 @@ export const CreateSaving = () => {
                 placeholder="Ingresa tu cedula"
                 onChange={handleInputChange}
                 className="appearance-none drop-shadow-none w-full block file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 outline-none rounded-none py-3 px-4 bg-slate-100 border-2 border-transparent focus:border-black"
-                pattern="[0-9]*"
-                required
               />
             </div>
             <div className="grid gap-2">
