@@ -7,7 +7,7 @@ export const TransactionsHistoryTable = ({ title, labelList, itemsList }) => {
     return (
       <>
         {title && <h3 className="text-xl">{title}</h3>}
-        <div class="overflow-auto">
+        <div className="overflow-auto">
           <table className="w-full h-5 overflow-y-auto pt-4 pb-4 font-gtultra border">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
               <tr className=" border-b">
