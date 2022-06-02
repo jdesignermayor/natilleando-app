@@ -11,14 +11,14 @@ export function useAuthentication(){
     };
 
     const onLogIn = (dataUser) => {
-        dispatch({ type: "loggedIn", user: { ...dataUser } });
-        navigate("/dashboard");
-    }
+      const role = dataUser?.role;
+      dispatch({ type: "loggedIn", user: { ...dataUser } });
+      role == 1 ? navigate("/admin") : navigate("/dashboard");
+    };
 
     return {
         onLogOut,
         onLogIn
     }
-
 }
 

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 
-const MEMBER_ROLE = 3;
-const BUCKET_FOLDER = 'avatars';
+const ALLOWED_ROLE = [1, 3];
+const BUCKET_FOLDER = "avatars";
+
+const mapRoles = ALLOWED_ROLE.map((r) => `${r}`).join(",");
+const stringRoles = `(${mapRoles})`;
 
 export function useSupabase() {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,17 +14,23 @@ export function useSupabase() {
 
   const [members, setMembers] = useState([]);
   const [payments, setPayments] = useState([]);
+  const [lastPayments, setLatestPayments] = useState([]);
+  const [allSummary, setAllSummary] = useState({
+    total_verified: 0,
+    total_unverified: 0,
+  });
+
   const [paymentsSummary, setPaymentsSummary] = useState({
-    total: 0
+    total: 0,
   });
 
   const getMembers = async () => {
     setIsLoading(true);
     try {
-      let { data, error, status } = await supabase
+      const { data, error, status } = await supabase
         .from("users")
         .select(`id, name`)
-        .eq("role", MEMBER_ROLE);
+        .filter("role", "in", stringRoles);
 
       if (error && status !== 406) {
         throw error;
@@ -31,7 +40,47 @@ export function useSupabase() {
         setMembers(data);
       }
     } catch (error) {
+      console.error(error);
+    } finally {
       setIsLoading(false);
+    }
+  };
+
+  const getLastPayments = async () => {
+    setIsLoading(true);
+
+    try {
+      const { data, error, status } = await supabase.rpc("getlastpayments");
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setLatestPayments(data);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getAllSummary = async () => {
+    setIsLoading(true);
+
+    try {
+      const { data, error, status } = await supabase.rpc("getallsummary");
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setAllSummary(data[0]);
+      }
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +100,7 @@ export function useSupabase() {
       Promise.resolve(data);
     } catch (error) {
       console.error(error);
-      romise.resolve(error);
+      Promise.resolve(error);
     } finally {
       setIsLoadingPayments(false);
     }
@@ -60,7 +109,6 @@ export function useSupabase() {
   const uploadImage = async (fileProp) => {
     setIsLoading(true);
     try {
-
       if (!fileProp) {
         throw new Error("You must select an image to upload.");
       }
@@ -87,24 +135,25 @@ export function useSupabase() {
 
       await supabase.storage.from(BUCKET_FOLDER).upload(filePath, file);
 
-      const getPublicUrlResult = supabase.storage
+      const { signedURL, error } = await supabase.storage
         .from(BUCKET_FOLDER)
-        .getPublicUrl(filePath);
+        .createSignedUrl(filePath, 60);
 
-      return Promise.resolve(getPublicUrlResult);
-
+      return Promise.resolve(signedURL);
     } catch (error) {
       return Promise.reject(error);
     } finally {
       setIsLoading(true);
     }
-  }
+  };
 
   const validateLogin = async ({ id, password }) => {
     try {
       const { data, error, status } = await supabase
         .from("users")
-        .select("id, name, surname, document_number, photo_url, whatsapp_number, referer_id")
+        .select(
+          "id, name, surname, document_number, photo_url, whatsapp_number, referer_id, role"
+        )
         .eq("id", id)
         .eq("document_number", password);
 
@@ -140,11 +189,10 @@ export function useSupabase() {
       }
     } catch (error) {
       return Promise.reject(error);
-      
     } finally {
       setIsLoadingSummary(false);
     }
-  }
+  };
 
   const getPaymentsById = async (id) => {
     try {
@@ -171,8 +219,7 @@ export function useSupabase() {
     } finally {
       setIsLoadingPayments(false);
     }
-  }
-
+  };
 
   return {
     createPayment,
@@ -181,11 +228,15 @@ export function useSupabase() {
     isLoadingPayments,
     members,
     payments,
+    lastPayments,
     paymentsSummary,
     validateLogin,
+    allSummary,
     getPaymentsById,
     getMembers,
     getPaymensSummary,
+    getLastPayments,
+    getAllSummary,
     uploadImage,
   };
 }

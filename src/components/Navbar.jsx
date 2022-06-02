@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link, Navigate } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
-import { useAuthentication } from '../hooks/useAuthentication';
+import { useAuthentication } from "../hooks/useAuthentication";
 
-import Logo from '../assets/images/four-leaf.png';
-import IconSignOut from '../assets/icons/exit.svg';
+import Logo from "../assets/images/four-leaf.png";
+import IconSignOut from "../assets/icons/exit.svg";
 
 export const Navbar = () => {
   const { state } = useAuth();
@@ -16,7 +16,7 @@ export const Navbar = () => {
     <nav className="flex items-center justify-between p-1 md:px-2 lg:px-40 2xl:px-[30%] h-16 gap-9 fixed w-full z-50 bg-white backdrop-filter backdrop-blur-md bg-opacity-70 border-b border-black">
       <Link
         to="/"
-        className="flex items-center font-gtultra font-bold text-lg"
+        className="flex items-center font-gtultra font-bold text-lg cursor-pointer"
       >
         <img src={Logo} width="45" alt="No te quedes pelado" />
         Natilleando
@@ -41,5 +41,4 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-}
-    
+};

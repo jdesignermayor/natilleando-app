@@ -1,6 +1,7 @@
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
+import { Admin } from "./pages/dashboard/Admin";
 import { CreateSaving } from "./pages/dashboard/CreateSaving";
 import { Home } from "./pages/dashboard/Home";
 import { HomeLanding } from "./pages/landing/HomeLanding";
@@ -29,6 +30,24 @@ function App() {
           <Route path="/register" element={<RegisterLanding />} />
           <Route path="/login" element={<SignIn />} />
           <Route
+            path="admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="admin/create-saving"
+            element={
+              <ProtectedRoute>
+                <CreateSaving />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="dashboard"
             element={
               <ProtectedRoute>
@@ -45,7 +64,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-        
+
           <Route
             path="dashboard/create-credit"
             element={

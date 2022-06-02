@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSimpleForm } from "./useSimpleForm";
 import { useSupabase } from "./useSupabase";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-import { toast } from "react-toastify";
+import { calculateTotal } from "../utils/calculator";
 
 export function useCreateCredit(){
   const [isOpenAnnounce, setIsOpenAnnounce] = useState(true);
+  const [totalValues, setTotalValues] = useState({
+    total: 0,
+    totalCredit: 0,
+  });
+  
   const navigate = useNavigate();
+  const { paymentsSummary, getPaymensSummary } = useSupabase();
+
 
   const {
     state: { user },
@@ -25,15 +32,25 @@ export function useCreateCredit(){
     setIsErrorForm,
   } = useSimpleForm();
 
-
   const handleHideComponent = () => {
     setIsOpenAnnounce(false);
   };
 
+  const handleSubmit = async () => {};
 
-  const handleSubmit =async () =>{
+  useEffect(() => {
+    getPaymensSummary(id);
+  }, []);
 
-  };
+  useEffect(() => {
+    const total = paymentsSummary?.total;
+    const totalCredit = calculateTotal(paymentsSummary?.total);
+
+    setTotalValues({
+      total,
+      totalCredit,
+    });
+  }, [paymentsSummary]);
 
   return {
     handleSubmit,
@@ -42,6 +59,8 @@ export function useCreateCredit(){
     isLoadingForm,
     isOpenAnnounce,
     isErrorForm,
+    formData,
+    totalValues,
   };
 
 }    
