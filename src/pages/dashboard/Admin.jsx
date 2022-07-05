@@ -30,7 +30,7 @@ export const Admin = () => {
   }, []);
 
   return (
-    <main className="px-2 lg:px-40 2xl:px-[30%] grid gap-5 pt-20  font-gtultraFine">
+    <main className="px-2 lg:px-40 2xl:px-[30%] grid gap-5 pt-20 font-gtultraFine">
       <h1 className="text-xl">
         Hola{" "}
         <span className="capitalize font-bold">
@@ -38,7 +38,7 @@ export const Admin = () => {
         </span>
       </h1>
 
-      <div className="flex flex-col gap-2">
+      <div className="">
         <div className="grid md:flex gap-3">
           <Cardvalue
             title="💰Total ahorro verificado"
@@ -59,7 +59,7 @@ export const Admin = () => {
       </div>
       <TransactionsHistoryTable
         title="Historial de pagos"
-        labelList={["Valor", "Estado", "Socio", "Adjunto", "Fecha"]}
+        labelList={["Valor", "Estado", "Socio", "Adjunto", "Fecha", "Opciones"]}
         itemsList={lastPayments}
       />
     </main>

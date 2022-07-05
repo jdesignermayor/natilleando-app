@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Spinning = () => {
   return (
     <div className="lds-ring">

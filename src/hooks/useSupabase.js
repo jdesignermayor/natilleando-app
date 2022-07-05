@@ -52,6 +52,7 @@ export function useSupabase() {
     try {
       const { data, error, status } = await supabase.rpc("getlastpayments");
 
+
       if (error && status !== 406) {
         throw error;
       }
@@ -115,7 +116,7 @@ export function useSupabase() {
 
       const file = fileProp;
       const fileExt = file.name.split(".").pop();
-      const fileName = `${Math.random()}.${fileExt}`;
+      const fileName = `${Math.random(4)}.${fileExt}`;
       const filePath = `public/${fileName}`;
       // const fileExtString = fileExt.toLowerCase();
 
@@ -135,11 +136,19 @@ export function useSupabase() {
 
       await supabase.storage.from(BUCKET_FOLDER).upload(filePath, file);
 
-      const { signedURL, error } = await supabase.storage
+      const { publicURL, error } = supabase.storage
         .from(BUCKET_FOLDER)
-        .createSignedUrl(filePath, 60);
+        .getPublicUrl(filePath);
 
-      return Promise.resolve(signedURL);
+      if (error) {
+        throw error("Error al subir imagen:", error);
+      }
+
+      // const { signedURL, error } = await supabase.storage
+      //   .from(BUCKET_FOLDER)
+      //   .createSignedUrl(filePath, 60);
+
+      return Promise.resolve(publicURL);
     } catch (error) {
       return Promise.reject(error);
     } finally {
@@ -168,6 +177,27 @@ export function useSupabase() {
       }
     } catch (error) {
       return Promise.reject(error);
+    }
+  };
+
+  const aprovePayment = async (id) => {
+    const confirmFlag = confirm("Estas seguro que deseas aprobar el pago?");
+    if (confirmFlag) {
+      try {
+        const { data, error, status } = await supabase
+          .from("payments_history")
+          .update({
+            payment_status: "verified",
+          })
+          .eq("id", id);
+
+        if (error && status !== 406) {
+          throw error;
+        }
+        return Promise.resolve(data);
+      } catch (error) {
+        return Promise.reject(error);
+      }
     }
   };
 
@@ -223,6 +253,7 @@ export function useSupabase() {
 
   return {
     createPayment,
+    aprovePayment,
     isLoading,
     isLoadingSummary,
     isLoadingPayments,

@@ -1,8 +1,18 @@
 import { moneyFormat, dateFormat } from "../utils/formats";
 
 import { Badge } from "../components/Badge";
+import { Button } from "./Button";
+
+import { useSupabase } from "../hooks/useSupabase";
 
 export const TransactionsHistoryTable = ({ title, labelList, itemsList }) => {
+  const { aprovePayment, getLastPayments } = useSupabase();
+
+  const updatePayment = (id) => {
+    aprovePayment(id);
+    getLastPayments();
+  };
+
   if (itemsList?.length > 0) {
     return (
       <>
@@ -30,6 +40,11 @@ export const TransactionsHistoryTable = ({ title, labelList, itemsList }) => {
                   voucher_photo,
                   payment_status,
                 }) => {
+                  const status =
+                    payment_status === "verified"
+                      ? { color: "success", name: "Verificado" }
+                      : { color: "error", name: "Sin verificar" };
+
                   return (
                     <tr key={id} className="bg-white border-b rounded">
                       <th scope="row" className="px-2 py-2  text-gray-900">
@@ -39,11 +54,7 @@ export const TransactionsHistoryTable = ({ title, labelList, itemsList }) => {
                         scope="row"
                         className="px-2 py-2 font-medium text-gray-900 "
                       >
-                        {payment_status === "verified" ? (
-                          <Badge color="success" name="Verificado" />
-                        ) : (
-                          <Badge color="danger" name="Pendiente" />
-                        )}
+                        <Badge color={status.color} name={status.name} />
                       </th>
                       {username && (
                         <th
@@ -83,6 +94,17 @@ export const TransactionsHistoryTable = ({ title, labelList, itemsList }) => {
                           {payment_date
                             ? dateFormat(payment_date)
                             : payment_date}
+                        </th>
+                      )}
+                      {labelList.includes("Opciones") && (
+                        <th scope="row" className="px-2 py-2 ">
+                          <Button
+                            icon="ADD"
+                            disabled={payment_status === "verified"}
+                            onHandleClick={() => updatePayment(id)}
+                          >
+                            Aprovar
+                          </Button>
                         </th>
                       )}
                     </tr>
